@@ -1,12 +1,14 @@
 <?php
 
-require_once(dirname(dirname(dirname(__FILE__))) . '/oauth/libextinc/OAuth.php');
-$oauthconfig = SimpleSAML_Configuration::getConfig('module_oauth.php');
-
-
 /* Load simpleSAMLphp, configuration and metadata */
 $config = SimpleSAML_Configuration::getInstance();
+$oauthconfig = SimpleSAML_Configuration::getConfig('module_oauth.php');
+
+require_once($config->resolvePath('modules/oauth/libextinc/OAuth.php'));
+
+
 $session = SimpleSAML_Session::getInstance();
+
 
 
 $userid = NULL;
@@ -83,6 +85,8 @@ if ($adata = $session->getData('accessToken',  'accesstoken')) {
 	$vomemberships = $consumer->getUserInfo($baseurl . '/module.php/virtualorg/data_oauth_json.php?method=memberOf', $accessToken);
 	$voreceived = TRUE;
 	$accessTokenKey = $accessToken->key;
+	
+	# echo('<pre>'); print_r($vomemberships); exit;
 }
 
 	
