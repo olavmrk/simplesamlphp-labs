@@ -16,7 +16,7 @@ class sspmod_virtualorg_VOStorage {
 			$q = @$this->db->query('SELECT id FROM vo');
 			if ($q === false) {
 				$this->db->queryExec('
-		DROP TABLE vo; CREATE TABLE vo (
+		CREATE TABLE vo (
 			id text, 
 			name text,
 			descr text,
@@ -24,7 +24,7 @@ class sspmod_virtualorg_VOStorage {
 			secret text,
 			PRIMARY KEY (id)
 		);
-		DROP TABLE membership; CREATE TABLE membership (
+		CREATE TABLE membership (
 			vo text REFERENCES vo (id) ON DELETE CASCADE,
 			userid text,
 			attributes text,
@@ -51,7 +51,8 @@ class sspmod_virtualorg_VOStorage {
 	function getVO($vo = NULL) {
 		$query = "SELECT * FROM vo WHERE id = '$vo'";
 		$results = $this->db->arrayQuery($query, SQLITE_ASSOC);
-		return $results[0];
+		if (count($results) == 1) return $results[0];
+		return NULL;
 	}
 		
 	function addVO($id, $name, $descr, $owner, $secret) {
@@ -75,7 +76,8 @@ class sspmod_virtualorg_VOStorage {
 				userid = '" . addslashes($userid) . "'";
 
 		$results = $this->db->arrayQuery($query, SQLITE_ASSOC);
-		return $results[0];	
+		if (count($results) == 1) return $results[0];
+		return NULL;
 	}
 	
 	function getVOmemberships($userid) {
