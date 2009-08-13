@@ -4,7 +4,8 @@
  * OAuth section
  */
 
-require_once(dirname(dirname(dirname(__FILE__))) . '/oauth/libextinc/OAuth.php');
+$config = SimpleSAML_Configuration::getInstance();
+require_once($config->resolvePath('modules/oauth/libextinc/OAuth.php'));
 $oauthconfig = SimpleSAML_Configuration::getConfig('module_oauth.php');
 
 $store = new sspmod_oauth_OAuthStore();
