@@ -24,13 +24,17 @@ echo('<h1>Your VO Memberships</h1>');
 
 if ($this->data['voreceived']) {
 	echo('<p>You are member of the following Virtual Organizations:</p><ul>');
-	foreach($this->data['vomemberships'] AS $vo) {
-		echo('<li>' . $vo['vo'] . '</li>');
+	
+	if (empty($this->data['vomemberships'])) {
+		echo('<li>You are member of no virtual organization</li>');
+	} else {	
+		foreach($this->data['vomemberships'] AS $vo) {
+			echo('<li>' . $vo['vo'] . '</li>');
+		}
 	}
-
 	echo('</ul>');
 
-
+	if (!empty($this->data['vomemberships'])) 
 	foreach($this->data['vomemberships'] AS $vo) {
 		echo('<h2>Virtual Organization Attributes for <tt>' . $vo['vo'] . '</tt></h2>');
 
