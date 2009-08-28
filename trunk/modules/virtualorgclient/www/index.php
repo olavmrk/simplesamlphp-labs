@@ -34,7 +34,7 @@ if (isset($_REQUEST['login'])) {
 
 # module.php/virtualorg/data_oauth_json.php
 
-$baseurl = 'http://dev.andreas.feide.no/simplesaml/';
+$baseurl = 'http://vo.rnd.feide.no/simplesaml/';
 $key = 'key';
 $secret = 'secret';
 
