@@ -3,7 +3,7 @@
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getInstance();
 
-$kconfig = SimpleSAML_Configuration::getConfig('module_kalmarlist.php');
+$kconfig = SimpleSAML_Configuration::getConfig('module_metalisting.php');
 
 $tag = $kconfig->getString('defaultTags', 'prod');
 $allowedTags = $kconfig->getArray('allowedTags');
@@ -31,8 +31,8 @@ $metaentries['remote']['saml20-sp-remote'] = $mh->getMetadataSet('saml20-sp-remo
 // print_r($mentries);
 
 
-$t = new SimpleSAML_XHTML_Template($config, 'kalmarlist:kalmarlist.tpl.php');
-$t->data['header'] = 'Kalmar Members';
+$t = new SimpleSAML_XHTML_Template($config, 'metalisting:metalisting.tpl.php');
+$t->data['header'] = 'Federation entities';
 $t->data['metaentries'] = $metaentries;
 $t->data['extended'] = (isset($_REQUEST['extended']));
 $t->show();
