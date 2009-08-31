@@ -34,6 +34,8 @@ function listMetadata($t, $metadata, $extended = FALSE) {
 			echo $entry['entityid'];
 		}
 		
+		// echo('<pre>'); print_r($entry); echo('</pre>');
+		
 		if ($extended) {
 			if (array_key_exists('expire', $entry)) {
 				if ($entry['expire'] < $now) {
@@ -43,13 +45,12 @@ function listMetadata($t, $metadata, $extended = FALSE) {
 				}
 			}
 		}
-		// if (array_key_exists('description', $entry)) {
-		// 	echo('<br />' . $t->getTranslation(SimpleSAML_Utilities::arrayize($entry['description'], 'en')));
-		// }
 
 		
 		if (array_key_exists('url', $entry)) {
-			echo(' [ <a href="' . $entry['link'] . '">more</a> ]');
+			echo(' [ <a href="' . 
+				$t->getTranslation(SimpleSAML_Utilities::arrayize($entry['url'], 'en')) .
+				'">more</a> ]');
 		}
 		
 		echo '</li>';
