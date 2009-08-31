@@ -13,10 +13,14 @@ function listMetadata($t, $metadata, $extended = FALSE) {
 		
 		$flag = NULL;
 		if (array_key_exists('tags', $entry)) { 
-			if(in_array('norway', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('kalmarlist/flags/no.png');
-			if(in_array('denmark', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('kalmarlist/flags/dk.png');
-			if(in_array('finland', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('kalmarlist/flags/fi.png');
-			if(in_array('sweden', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('kalmarlist/flags/se.png');
+			if(in_array('norway', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('metalisting/flags/no.png');
+			if(in_array('denmark', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('metalisting/flags/dk.png');
+			if(in_array('finland', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('metalisting/flags/fi.png');
+			if(in_array('sweden', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('metalisting/flags/se.png');
+			if(in_array('switzerland', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('metalisting/flags/ch.png');
+			if(in_array('france', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('metalisting/flags/fr.png');
+			if(in_array('poland', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('metalisting/flags/pl.png');
+			if(in_array('germany', $entry['tags'])) $flag = SimpleSAML_Module::getModuleURL('metalisting/flags/de.png');
 		}
 
 		
@@ -55,10 +59,10 @@ function listMetadata($t, $metadata, $extended = FALSE) {
 	
 }
 
-echo('<h2>Kalmar Identity Providers</h2>');
+echo('<h2>Identity Providers</h2>');
 listMetadata($this, $this->data['metaentries']['remote']['saml20-idp-remote'], $this->data['extended']);
 
-echo('<h2>Kalmar Service Providers</h2>');
+echo('<h2>Service Providers</h2>');
 listMetadata($this, $this->data['metaentries']['remote']['saml20-sp-remote'], $this->data['extended']);
 
 
