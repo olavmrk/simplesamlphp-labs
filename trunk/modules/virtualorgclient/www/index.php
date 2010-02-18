@@ -17,7 +17,7 @@ $vomemberships = NULL;
 $accessTokenKey = NULL;
 
 if (isset($_REQUEST['login'])) {
-	$authsource = 'saml2';
+	$authsource = 'default-sp';
 	$useridattr = 'eduPersonPrincipalName';
 
 	if ($session->isValid($authsource)) {
