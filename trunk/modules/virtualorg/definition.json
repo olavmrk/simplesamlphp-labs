@@ -3,7 +3,7 @@
 	"name"			: "Virtual Organization Platform",
 	"descr"			: "A server with UI for managing Virtual Organizations stored in an SQLite backend. Provides an OAuth server interface for accessing group information.",
 
-	"definition"	: "http://simplesamlphp-labs.googlecode.com/svn/trunk/modules/metalisting/definition.json",
+	"definition"	: "http://simplesamlphp-labs.googlecode.com/svn/trunk/modules/virtualorg/definition.json",
 	"branch"		: "stable",
 	
 	"dependencies"	: ["oauth"],
