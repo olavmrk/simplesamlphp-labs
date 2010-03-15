@@ -3,7 +3,7 @@
 	"name"			: "Metadata Listing",
 	"descr"			: "Offers a nice looking list of all trusted entities, including flags to indicate orgiginating country.",
 
-	"definition"	: "http://dev.andreas.feide.no/~andreas/definition.json",
+	"definition"	: "http://simplesamlphp-labs.googlecode.com/svn/trunk/modules/metalisting/definition.json",
 	"branch"		: "stable",
 	
 	"dependencies"	: ["saml"],
@@ -11,8 +11,8 @@
 	"access"		: {
 		"stable"	: {
 			"type"		: "zip",
-			"version"	: "0.1.2",
-			"url"		: "http://dev.andreas.feide.no/~andreas/metalisting.zip"
+			"version"	: "0.1",
+			"url"		: "http://simplesamlphp-labs.googlecode.com/files/metalisting_0.1.zip"
 		},
 		"dev"		: {
 			"type"		: "svn",
