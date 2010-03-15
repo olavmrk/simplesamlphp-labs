@@ -1,0 +1,9 @@
+{
+	"id"			: "metalisting",
+	"name"			: "Metadata Listing",
+	"descr"			: "Offers a nice looking list of all trusted entities, including flags to indicate orgiginating country.",
+	"access"		: {
+		
+	}
+	
+}
