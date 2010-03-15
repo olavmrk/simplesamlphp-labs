@@ -1,5 +1,5 @@
 {
-	"id"			: "virtualorg",
+	"id"			: "virtualorgclient",
 	"name"			: "Virtual Organization Client",
 	"descr"			: "A client to access to the Virtual Organizations Platform (module: virtualorg), using the OAuth API to retrieve group information.",
 
