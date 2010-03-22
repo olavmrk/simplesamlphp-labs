@@ -1,0 +1,122 @@
+{
+	"s1_head": {
+		"en": "Register new account at %SNAME%"
+	},
+	"s1_para1": {
+		"en": "The first step is to register and verify your e-mail address. Make sure that you fill in an e-mail address where you can receive e-mail."
+	},
+	"s1_para2": {
+		"en": "You will receive a e-mail including a url you have to follow to continue the registration."
+	},
+	"s1_send": {
+		"en": "Send e-mail"
+	},
+	"s2_para1": {
+		"en": "An e-mail is sent to you with a link that you need to follow in order to continue the registration proccess."
+	},
+	"s3_head": {
+		"en": "New user information"
+	},
+	"s3_intro": {
+		"en": "Type in your user account information."
+	},
+	"review_head": {
+		"en": "User information"
+	},
+	"review_intro": {
+		"en": "On this page can you alter some of the registered user information."
+	},
+	"lpw_head": {
+		"en": "Reset lost password"
+	},
+	"lpw_para1": {
+		"en": "Type the e-mail address you used when you registered your account to reset your password."
+	},
+	"lpw_para2": {
+		"en": "You will receive a e-mail including a url you can access to reset the lost password."
+	},
+	"lpw_send": {
+		"en": "Submit e-mail"
+	},
+	"lpw_reg_head": {
+		"en": "Reset password"
+	},
+	"lpw_reg_para1": {
+		"en": "Verify your user id and type you new password twice."
+	},
+	"lpw_success_head": {
+		"en": "Mail is successfully sent"
+	},
+	"lpw_success_para1": {
+		"en": "An e-mail is sent to you with a link that you need to follow in order to reset your password."
+	},
+	"lpw_complete_para1": {
+		"en": "The password is successfully reset"
+	},
+	"new_head_other": {
+		"en": "Other choices"
+	},
+	"link_newuser": {
+		"en": "Register new account"
+	},
+	"link_review": {
+		"en": "Review registered user information"
+	},
+	"link_lostpw": {
+		"en": "Reset lost password"
+	},
+	"link_changepw": {
+		"en": "Change password"
+	},
+	"new_complete_head": {
+		"en": "Registration complete"
+	},
+	"new_complete_para1": {
+		"en": "You are now successfully registered at %SNAME%."
+	},
+	"new_mailUsed_head": {
+		"en": "Register new user"
+	},
+	"new_mailUsed_para1": {
+		"en": "A user is already registrated in %SNAME% with this e-mail address. This system allows only one user registration for each e-mail address."
+	},
+	"email_not_found": {
+		"en": "This e-mail address is not registered in this system."
+	},
+	"illegal_email": {
+		"en": "This (%VAR1%) does not look like ann valid e-mail address."
+	},
+	"invalid_token": {
+		"en": "Invalid token provided. The most common reason why a token becomes invalid is that the token you received has timed out. A token is only valid in a limited time period. Regsiter again to receive a new fresh token."
+	},
+	"err_retype_pw": {
+		"en": "The two typed password did not match."
+	},
+	"illegale_value": {
+		"en": "%VAR2% is illegale value for %VAR1%."
+	},
+	"void_value": {
+		"en": "Empty value is not allowed for %VAR1%."
+	},
+	"uid_taken": {
+		"en": "Username taken. You have to select a different username."
+	},
+	"uid_not_found": {
+		"en": "User id: %VAR1% is not found in the catalog."
+	},
+	"wrong_pw": {
+		"en": "Wrong password for this user."
+	},
+	"cpw_head": {
+		"en": "Change password"
+	},
+	"cpw_para1": {
+		"en": "Type your username and old and new password to set new password."
+	},
+	"cpwc_para1": {
+		"en": "Passwordchange completed successfully."
+	},
+	"cpwc_login": {
+		"en": "You can login her to review your user information."
+	}
+}

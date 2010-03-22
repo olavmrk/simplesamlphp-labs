@@ -1,0 +1,35 @@
+{
+	"f": {
+		"en": ""
+	},
+	"fname": {
+		"en": "Given name"
+	},
+	"sname": {
+		"en": "Surname"
+	},
+	"mail": {
+		"en": "E-mail"
+	},
+	"uid": {
+		"en": "User id"
+	},
+	"uid_desc": {
+		"en": "Allowed chars for the User id is a-z, - and 0-9. It must start with a letter. The length of the User id is between 3 and 16 chars."
+	},
+	"eppn": {
+		"en": "eduPersonPrincipalName"
+	},
+	"cn": {
+		"en": "Common name"
+	},
+	"pw1": {
+		"en": "New password"
+	},
+	"pw2": {
+		"en": "Retype new password"
+	},
+	"oncepw": {
+		"en": "Old password"
+	}
+}
