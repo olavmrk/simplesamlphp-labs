@@ -38,7 +38,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 			$html = new SimpleSAML_XHTML_Template(
 				$config,
 				'selfregister:step5_mailUsed.tpl.php',
-				'selfregister:formdict');
+				'selfregister:selfregister');
 			$html->data['systemName'] = $systemName;
 
 			$html->show();
@@ -58,7 +58,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 			$mailt = new SimpleSAML_XHTML_Template(
 				$config,
 				'selfregister:mail1_token.tpl.php',
-				'selfregister:maildict');
+				'selfregister:selfregister');
 			$mailt->data['email'] = $email;
 			$mailt->data['registerurl'] = $registerurl;
 			$mailt->data['systemName'] = $systemName;
@@ -75,7 +75,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 			$html = new SimpleSAML_XHTML_Template(
 				$config,
 				'selfregister:step2_sent.tpl.php',
-				'selfregister:formdict');
+				'selfregister:selfregister');
 			$html->data['systemName'] = $systemName;
 			$html->show();
 		}
@@ -83,7 +83,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 		$et = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:step1_email.tpl.php',
-			'selfregister:formdict');
+			'selfregister:selfregister');
 		$et->data['email'] = $_POST['emailreg'];
 		$et->data['systemName'] = $systemName;
 
@@ -129,7 +129,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 		$html = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:step3_register.tpl.php',
-			'selfregister:formdict');
+			'selfregister:selfregister');
 		$html->data['formHtml'] = $formHtml;
 		$html->show();
 	}catch (sspmod_selfregister_Error_UserException $e){
@@ -137,7 +137,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 		$terr = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:step1_email.tpl.php',
-			'selfregister:formdict');
+			'selfregister:selfregister');
 
 		$error = $terr->t(
 			$e->getMesgId(),
@@ -166,7 +166,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 		 $html = new SimpleSAML_XHTML_Template(
 			 $config,
 			 'selfregister:step4_complete.tpl.php',
-			 'selfregister:formdict');
+			 'selfregister:selfregister');
 
 		 $html->data['systemName'] = $systemName;
 		 $html->show();
@@ -191,7 +191,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 		 $html = new SimpleSAML_XHTML_Template(
 			 $config,
 			 'selfregister:step3_register.tpl.php',
-			 'selfregister:formdict');
+			 'selfregister:selfregister');
 		 $html->data['formHtml'] = $formHtml;
 
 		$error = $html->t(
@@ -207,7 +207,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 	$html = new SimpleSAML_XHTML_Template(
 		$config,
 		'selfregister:step1_email.tpl.php',
-		'selfregister:formdict');
+		'selfregister:selfregister');
 	$html->data['systemName'] = $systemName;
 	$html->show();
 }

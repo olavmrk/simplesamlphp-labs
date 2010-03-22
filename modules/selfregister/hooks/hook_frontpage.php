@@ -9,19 +9,19 @@ function selfregister_hook_frontpage(&$links) {
 
 	$links['auth'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('selfregister/newUser.php'),
-		'text' => '{selfregister:formdict:link_newuser}',
+		'text' => '{selfregister:selfregister:link_newuser}',
 	);
 	$links['auth'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('selfregister/reviewUser.php'),
-		'text' => '{selfregister:formdict:link_review}',
+		'text' => '{selfregister:selfregister:link_review}',
 	);
 	$links['auth'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('selfregister/lostPassword.php'),
-		'text' => '{selfregister:formdict:link_lostpw}',
+		'text' => '{selfregister:selfregister:link_lostpw}',
 	);
 	$links['auth'][] = array(
 		'href' => SimpleSAML_Module::getModuleURL('selfregister/changePassword.php'),
-		'text' => '{selfregister:formdict:link_changepw}',
+		'text' => '{selfregister:selfregister:link_changepw}',
 	);
 
 }

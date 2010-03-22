@@ -28,7 +28,7 @@ if(array_key_exists('sender', $_REQUEST)){
 		$html = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:changepwcomplete.php',
-			'selfregister:formdict');
+			'selfregister:selfregister');
 		$html->show();
 
 	}catch(sspmod_selfregister_Error_UserException $e){
@@ -41,7 +41,7 @@ if(array_key_exists('sender', $_REQUEST)){
 		$html = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:change_pw.tpl.php',
-			'selfregister:formdict');
+			'selfregister:selfregister');
 		$html->data['formHtml'] = $formHtml;
 
 		$error = $html->t(
@@ -61,7 +61,7 @@ if(array_key_exists('sender', $_REQUEST)){
 	$html = new SimpleSAML_XHTML_Template(
 		$config,
 		'selfregister:change_pw.tpl.php',
-		'selfregister:formdict');
+		'selfregister:selfregister');
 	$html->data['formHtml'] = $formHtml;
 	$html->show();
 }

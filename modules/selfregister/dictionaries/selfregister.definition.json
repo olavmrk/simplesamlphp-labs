@@ -1,4 +1,25 @@
 {
+	"mailNew_header": {
+		"en": "Registration at %SNAME% - email validation"
+	},
+	"mailLost_header": {
+		"en": "Lost password at %SNAME%"
+	},
+	"mailNew_mailintro": {
+		"en": "Hi thanks for using the %SNAME% service. This e-mail is sent so that you can verify your e-mail address:"
+	},
+	"mailNew_urlintro": {
+		"en": "In order to continue registration of a new user on %SNAME%, visit the following URL:"
+	},
+	"mailLost_urlintro": {
+		"en": "To reset your password at %SNAME%, use the following URL:"
+	},
+	"mail_tokeninfo": {
+		"en": "This URL contains a secret token that validates your e-mail address. This token is valid for only 5 days. If this token expire, you have to request a new token by starting the registration over again."
+	},
+	"mail1_signature": {
+		"en": "Kind regards\n%SNAME%"
+	},
 	"s1_head": {
 		"en": "Register new account at %SNAME%"
 	},
@@ -118,5 +139,35 @@
 	},
 	"cpwc_login": {
 		"en": "You can login her to review your user information."
+	},
+	"fname": {
+		"en": "Given name"
+	},
+	"sname": {
+		"en": "Surname"
+	},
+	"mail": {
+		"en": "E-mail"
+	},
+	"uid": {
+		"en": "User id"
+	},
+	"uid_desc": {
+		"en": "Allowed chars for the User id is a-z, - and 0-9. It must start with a letter. The length of the User id is between 3 and 16 chars."
+	},
+	"eppn": {
+		"en": "eduPersonPrincipalName"
+	},
+	"cn": {
+		"en": "Common name"
+	},
+	"pw1": {
+		"en": "New password"
+	},
+	"pw2": {
+		"en": "Retype new password"
+	},
+	"oncepw": {
+		"en": "Old password"
 	}
 }
