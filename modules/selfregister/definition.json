@@ -1,0 +1,19 @@
+{
+	"id"			: "selfregister",
+	"name"			: "Self-register",
+	"descr"			: "Allows users to register new accounts.",
+
+	"definition"	: "http://simplesamlphp-labs.googlecode.com/svn/trunk/modules/selfregister/definition.json",
+	"branch"		: "dev",
+	
+	"dependencies"	: ["saml"],
+
+	"access"		: {
+		"dev"		: {
+			"type"		: "svn",
+			"version"	: "0.1",
+			"url"		: "http://simplesamlphp-labs.googlecode.com/svn/trunk/modules/selfregister"
+		}
+	}
+	
+}
