@@ -60,7 +60,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		$mailt = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:lostPasswordMail_token.tpl.php',
-			'selfregister:maildict');
+			'selfregister:selfregister');
 
 		$mailt->data['registerurl'] = $registerurl;
 		$systemName = array('%SNAME%' => $uregconf->getString('system.name') );
@@ -78,13 +78,13 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		$html = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:lostPassword_sent.tpl.php',
-			'selfregister:formdict');
+			'selfregister:selfregister');
 		$html->show();
 	}catch(sspmod_selfregister_Error_UserException $e){
 		$et = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:lostPassword_email.tpl.php',
-			'selfregister:formdict');
+			'selfregister:selfregister');
 		$et->data['email'] = $_POST['emailreg'];
 
 		$error = $et->t(
@@ -132,7 +132,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		$html = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:lostPassword_changePassword.tpl.php',
-			'selfregister:formdict');
+			'selfregister:selfregister');
 		$html->data['formHtml'] = $formHtml;
 		$html->show();
 	} catch(sspmod_selfregister_Error_UserException $e) {
@@ -140,7 +140,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		$terr = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:lostPassword_email.tpl.php',
-			'selfregister:formdict');
+			'selfregister:selfregister');
 
 		$error = $terr->t(
 			$e->getMesgId(),
@@ -184,7 +184,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  $html = new SimpleSAML_XHTML_Template(
 			  $config,
 			  'selfregister:lostPassword_complete.tpl.php',
-			  'selfregister:formdict');
+			  'selfregister:selfregister');
 		  $html->show();
 	  } catch(sspmod_selfregister_Error_UserException $e) {
 		  // Some user error detected
@@ -205,7 +205,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  $html = new SimpleSAML_XHTML_Template(
 			  $config,
 			  'selfregister:lostPassword_changePassword.tpl.php',
-			  'selfregister:formdict');
+			  'selfregister:selfregister');
 		  $html->data['formHtml'] = $formHtml;
 
 		$error = $html->t(
@@ -221,7 +221,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 	$html = new SimpleSAML_XHTML_Template(
 		$config,
 		'selfregister:lostPassword_email.tpl.php',
-		'selfregister:formdict');
+		'selfregister:selfregister');
 	$html->show();
 }
 

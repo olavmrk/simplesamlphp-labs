@@ -24,7 +24,7 @@ class sspmod_selfregister_XHTML_Form {
 		$this->translator = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:step1email.php', // Selected as a dummy
-			'selfregister:fieldsdict');
+			'selfregister:selfregister');
 	}
 
 

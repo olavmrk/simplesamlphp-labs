@@ -28,7 +28,7 @@ $formGen->setReadOnly($readOnlyFields);
 $html = new SimpleSAML_XHTML_Template(
 	$config,
 	'selfregister:reviewuser.tpl.php',
-	'selfregister:formdict');
+	'selfregister:selfregister');
 
 
 if(array_key_exists('sender', $_POST)){
