@@ -42,9 +42,6 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 				);
 		}
 
-
-		// FIXME: chekck if mail is found in the cataloge
-		// notify the user if this mail is not registrated, or...
 		$tg = new SimpleSAML_Auth_TimeLimitedToken($tokenLifetime);
 		$tg->addVerificationData($email);
 		$newToken = $tg->generate_token();
@@ -115,12 +112,10 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 
 		$formGen = new sspmod_selfregister_XHTML_Form($formFields, 'lostPassword.php');
 
-		$showFields = array('uid', 'pw1', 'pw2');
+		$showFields = array('pw1', 'pw2');
 		$formGen->fieldsToShow($showFields);
-		$formGen->setReadOnly('uid');
 
 		$userValues = $store->getUser('mail', $email);
-		$formGen->setValues(array('uid' => $userValues['uid']));
 
 		$hidden = array(
 			'emailconfirmed' => $email,
@@ -134,6 +129,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 			'selfregister:lostPassword_changePassword.tpl.php',
 			'selfregister:selfregister');
 		$html->data['formHtml'] = $formHtml;
+		$html->data['uid'] = $userValues['uid'];
 		$html->show();
 	} catch(sspmod_selfregister_Error_UserException $e) {
 		// Invalid token
@@ -158,7 +154,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  $validator = new sspmod_selfregister_Registration_Validation(
 			  $formFields,
 			  $listValidate);
-		  $validValues = $validator->validateInput();
+
 
 		  $email = filter_input(
 			  INPUT_POST,
@@ -173,11 +169,10 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  $token = $_REQUEST['token'];
 		  if (!$tg->validate_token($token))
 			  throw new sspmod_selfregister_Error_UserException('invalid_token');
-		  // FIXME: But what to do if we hawe an invalid token?
-		  // Tell the user that it is most probable to old and start over again
 
 		  $userValues = $store->getUser('mail', $email);
 		  $uid = $userValues['uid'];
+		  $validValues = $validator->validateInput();
 		  $newPw = sspmod_selfregister_Util::validatePassword($validValues);
 		  $store->changeUserPassword($uid, $newPw);
 
@@ -190,9 +185,8 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  // Some user error detected
 		  $formGen = new sspmod_selfregister_XHTML_Form($formFields, 'lostPassword.php');
 
-		  $showFields = array('uid', 'pw1', 'pw2');
+		  $showFields = array('pw1', 'pw2');
 		  $formGen->fieldsToShow($showFields);
-		  $formGen->setReadOnly('uid');
 
 		  $hidden = array();
 		  $hidden['emailconfirmed'] = $_REQUEST['emailconfirmed'];
@@ -207,6 +201,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 			  'selfregister:lostPassword_changePassword.tpl.php',
 			  'selfregister:selfregister');
 		  $html->data['formHtml'] = $formHtml;
+		  $html->data['uid'] = $userValues['uid'];
 
 		$error = $html->t(
 			  $e->getMesgId(),

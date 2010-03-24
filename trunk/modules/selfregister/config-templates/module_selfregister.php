@@ -56,15 +56,15 @@ $config = array (
 	// Registated attributes
 	'attributes'  => array(
 		'uid' => 'uid',
-		'givenName' => 'fname',
-		'sn' => 'sname',
+		'givenName' => 'givenName',
+		'sn' => 'sn',
 		// Will be a combination for givenName and sn.
 		'cn' => 'cn',
 		'mail' => 'mail',
 		// uid and appended realm
-		'eduPersonPrincipalName' => 'eppn',
+		'eduPersonPrincipalName' => 'eduPersonPrincipalName',
 		// Set from password walidataion and encryption
-		'userPassword' => 'pw1'),
+		'userPassword' => 'userPassword'),
 
 	// Is it a good solution to indicat read only values here?
 
@@ -81,13 +81,13 @@ $config = array (
 			'layout' => array(),
 			), */
 		// First name (ldap: givenName)
-		'fname' => array(
+		'givenName' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'text'),
-			), // end fname
+			), // end givenName
 		// Surname (ldap: sn)
-		'sname' => array(
+		'sn' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'text',
@@ -116,18 +116,23 @@ $config = array (
 				),
 			), // end cn
 		// eduPersonPrincipalName
-		'eppn' => array(
+		'eduPersonPrincipalName' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'text',
 				),
-			), // end eppn
-		'pw1' => array(
+			), // end eduPersonPrincipalName
+		'userPassword' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'password',
 				),
 			), // end pw1
+		'pw1' => array(
+			'validate' => FILTER_DEFAULT,
+			'layout' => array(
+				'control_type' => 'password',
+				),
 		'pw2' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
