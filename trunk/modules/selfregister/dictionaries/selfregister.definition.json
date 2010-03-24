@@ -27,7 +27,7 @@
 		"en": "The first step is to register and verify your e-mail address. Make sure that you fill in an e-mail address where you can receive e-mail."
 	},
 	"s1_para2": {
-		"en": "You will receive a e-mail including a url you have to follow to continue the registration."
+		"en": "You will receive an e-mail including a url you have to follow to continue the registration."
 	},
 	"s1_send": {
 		"en": "Send e-mail"
@@ -141,7 +141,7 @@
 		"en": "User info successfully changed"
 	},
 	"uid_desc": {
-		"en": "Allowed chars for the User id is a-z, - and 0-9. It must start with a letter. The length of the User id is between 3 and 16 chars."
+		"en": "Allowed chars for the User id is a-z, - and 0-9. It must start with a letter. The length of the User ID must be at least 3 characters and no longer than 16."
 	},
 	"pw1": {
 		"en": "New password"

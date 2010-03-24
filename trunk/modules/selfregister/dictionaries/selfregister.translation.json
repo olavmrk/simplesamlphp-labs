@@ -1,0 +1,107 @@
+{
+	"mailNew_header": {
+		"no": "Registrering p\u00e5 %SNAME% - epost validering"
+	},
+	"mailLost_header": {
+		"no": "Glemt passord p\u00e5 %SNAME%"
+	},
+	"mailNew_mailintro": {
+		"no": "Hei, takk for at du bruker %SNAME%. Denne epost er sendt, slik at du kan validere epost adressen din:"
+	},
+	"mailNew_urlintro": {
+		"no": "For fullf\u00f8re registereringen av en ny bruker p\u00e5 %SNAME%, g\u00e5 til f\u00f8lgende URL:"
+	},
+	"mailLost_urlintro": {
+		"no": "For \u00e5 nullstille ditt passord p\u00e5 %SNAME%, bruk f\u00f8lgende URL:"
+	},
+	"mail_tokeninfo": {
+		"no": "Denne URL-en inneholder en billett som validerer epostadressen din. Denne billetten er gyldig i 5 dager. Dersom den utl\u00f8per blir du n\u00f8dt til \u00e5 be om en ny billett og starte registreringen om igjen."
+	},
+	"mail1_signature": {
+		"no": "Vennlig hilsen %SNAME%"
+	},
+	"s1_head": {
+		"no": "Registrer ny brukerkonto p\u00e5 %SNAME%"
+	},
+	"s1_send": {
+		"no": "Send epost"
+	},
+	"s3_head": {
+		"no": "Data for ny bruker"
+	},
+	"s3_intro": {
+		"no": "Fyll inn passende brukerdata."
+	},
+	"review_head": {
+		"no": "Brukerdata"
+	},
+	"review_intro": {
+		"no": "Din bruker ID er %UID%. P\u00e5 denne siden kan du endre noe av brukerdataene som er lagret om deg."
+	},
+	"lpw_head": {
+		"no": "Nullstill glemt passord"
+	},
+	"lpw_send": {
+		"no": "Send epost"
+	},
+	"lpw_reg_head": {
+		"no": "Nullstill passord"
+	},
+	"lpw_success_head": {
+		"no": "Mail er sendt"
+	},
+	"lpw_complete_para1": {
+		"no": "Passord er nullstilt"
+	},
+	"new_head_other": {
+		"no": "Andre valg"
+	},
+	"link_newuser": {
+		"no": "Registrer ny brukerkonto"
+	},
+	"link_review": {
+		"no": "Endre registrerte brukerdata"
+	},
+	"link_lostpw": {
+		"no": "Nullstill glemt passord"
+	},
+	"link_changepw": {
+		"no": "Bytt passord"
+	},
+	"new_complete_head": {
+		"no": "Registreringen er fullf\u00f8rt"
+	},
+	"new_complete_para1": {
+		"no": "Du er n\u00e5 registrert p\u00e5 %SNAME%."
+	},
+	"new_mailUsed_head": {
+		"no": "Registrer ny bruker"
+	},
+	"err_retype_pw": {
+		"no": "De to passordene som ble skrevet inn stemmer ikke overens."
+	},
+	"void_value": {
+		"no": "Tom verdi er ikke lov for %VAR1%."
+	},
+	"uid_taken": {
+		"no": "Brukernavn er opptatt. Du m\u00e5 velge et annet brukernavn."
+	},
+	"cpw_head": {
+		"no": "Bytt passord"
+	},
+	"message_chpw": {
+		"no": "Passord er byttet"
+	},
+	"message_chuinfo": {
+		"no": "Brukerdata ble endret"
+	},
+	"pw1": {
+		"no": "Nytt passord"
+	},
+	"pw2": {
+		"no": "Gjenta nytt passord"
+	},
+	"oncepw": {
+		"no": "Gammelt passord"
+	}
+}
