@@ -45,7 +45,7 @@
 		"en": "User information"
 	},
 	"review_intro": {
-		"en": "On this page can you alter some of the registered user information."
+		"en": "Your user id is %UID%. On this page can you alter some of the registered user information."
 	},
 	"lpw_head": {
 		"en": "Reset lost password"
@@ -63,7 +63,7 @@
 		"en": "Reset password"
 	},
 	"lpw_reg_para1": {
-		"en": "Verify your user id and type you new password twice."
+		"en": "Your user id is %UID%. Type you new password twice."
 	},
 	"lpw_success_head": {
 		"en": "Mail is successfully sent"
@@ -81,7 +81,7 @@
 		"en": "Register new account"
 	},
 	"link_review": {
-		"en": "Review registered user information"
+		"en": "Change registered information"
 	},
 	"link_lostpw": {
 		"en": "Reset lost password"
@@ -132,34 +132,16 @@
 		"en": "Change password"
 	},
 	"cpw_para1": {
-		"en": "Type your username and old and new password to set new password."
+		"en": "Your user id is %UID%. Type the new password twice to and Submit set new password."
 	},
-	"cpwc_para1": {
-		"en": "Passwordchange completed successfully."
+	"message_chpw": {
+		"en": "Password successfully changed"
 	},
-	"cpwc_login": {
-		"en": "You can login her to review your user information."
-	},
-	"fname": {
-		"en": "Given name"
-	},
-	"sname": {
-		"en": "Surname"
-	},
-	"mail": {
-		"en": "E-mail"
-	},
-	"uid": {
-		"en": "User id"
+	"message_chuinfo": {
+		"en": "User info successfully changed"
 	},
 	"uid_desc": {
 		"en": "Allowed chars for the User id is a-z, - and 0-9. It must start with a letter. The length of the User id is between 3 and 16 chars."
-	},
-	"eppn": {
-		"en": "eduPersonPrincipalName"
-	},
-	"cn": {
-		"en": "Common name"
 	},
 	"pw1": {
 		"en": "New password"

@@ -1,6 +1,6 @@
 <?php
 
-$this->data['head'] = '<link rel="stylesheet" href="resources/error.css" type="text/css">';
+$this->data['head'] = '<link rel="stylesheet" href="resources/umesg.css" type="text/css">';
 
 $this->includeAtTemplateBase('includes/header.php'); ?>
 

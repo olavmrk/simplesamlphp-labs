@@ -1,7 +1,6 @@
 <?php
 
-
-// Configuration
+  // Configuration
 $config = SimpleSAML_Configuration::getInstance();
 $uregconf = SimpleSAML_Configuration::getConfig('module_selfregister.php');
 $eppnRealm = $uregconf->getString('user.realm');
@@ -17,11 +16,10 @@ $attributes = $as->getAttributes();
 
 $formFields = $uregconf->getArray('formFields');
 $reviewAttr = $uregconf->getArray('attributes');
-$readOnlyFields = array('mail', 'uid');
+$showFields = array('givenName', 'sn', 'mail');
+$readOnlyFields = array('mail');
 
 $formGen = new sspmod_selfregister_XHTML_Form($formFields, 'reviewUser.php');
-// $showFields = sspmod_selfregister_Util::genFieldView($reviewAttr);
-$showFields = array('uid', 'fname', 'sname', 'mail');
 $formGen->fieldsToShow($showFields);
 $formGen->setReadOnly($readOnlyFields);
 
@@ -31,7 +29,7 @@ $html = new SimpleSAML_XHTML_Template(
 	'selfregister:selfregister');
 
 
-if(array_key_exists('sender', $_POST)){
+if(array_key_exists('sender', $_POST)) {
 	try{
 		// Update user object
 		// $listValidate = sspmod_selfregister_Util::genFieldView($reviewAttr);
@@ -45,23 +43,24 @@ if(array_key_exists('sender', $_POST)){
 		$reviewAttr = array_diff_key($reviewAttr, $remove);
 
 		$eppnRealm = $uregconf->getString('user.realm');
+		$uid = $validValues['uid'] = $attributes['uid'][0];
+
 		$userInfo = sspmod_selfregister_Util::processInput(
 			$validValues,
 			$reviewAttr);
 
 		$store = new sspmod_selfregister_Storage_UserCatalogue();
-		$uid = $attributes['uid'][0];
+
 		$store->updateUser($uid, $userInfo);
 
 		$values = $validator->getRawInput();
-		$html->data['userMessage'] = 'Information updated successfully';
+		$html->data['userMessage'] = 'message_chuinfo';
 
 	}catch(sspmod_selfregister_Error_UserException $e){
 		// Some user error detected
 		$values = $validator->getRawInput();
 
 		$values['mail'] = $attributes['mail'][0];
-		$values['uid'] = $attributes['uid'][0];
 
 		$error = $html->t(
 			$e->getMesgId(),
@@ -70,9 +69,9 @@ if(array_key_exists('sender', $_POST)){
 
 		$html->data['error'] = htmlspecialchars($error);
 	}
-}elseif(array_key_exists('logout', $_GET)){
+}elseif(array_key_exists('logout', $_GET)) {
 	$as->logout('newUser.php');
- }else{
+ } else {
 	// The GET access this endpoint
 	$values = sspmod_selfregister_Util::filterAsAttributes($attributes, $reviewAttr);
 }
@@ -80,7 +79,7 @@ if(array_key_exists('sender', $_POST)){
 $formGen->setValues($values);
 $formHtml = $formGen->genFormHtml();
 $html->data['formHtml'] = $formHtml;
-
+$html->data['uid'] = $attributes['uid'][0];
 $html->show();
 
 ?>

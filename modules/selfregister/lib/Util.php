@@ -33,7 +33,7 @@ class sspmod_selfregister_Util {
 		foreach($expectedValues as $db => $field){
 			switch($db){
 			case "cn":
-				$skv[$db] = $fieldValues['fname'].' '.$fieldValues['sname'];
+				$skv[$db] = $fieldValues['givenName'].' '.$fieldValues['sn'];
 				break;
 			case "userPassword":
 				$skv[$db] = self::validatePassword($fieldValues);

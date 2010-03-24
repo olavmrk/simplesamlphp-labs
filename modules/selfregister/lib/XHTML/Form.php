@@ -9,7 +9,8 @@ class sspmod_selfregister_XHTML_Form {
 	private $readonly = array();
 	private $disabled = array();
 	private $actionEndpoint = '?';
-	private $translator = NULL;
+	private $transAttr = NULL;
+	private $transDesc = NULL;
 	private $submitName = 'sender';
 	private $submitValue = 'Submit';
 
@@ -21,7 +22,11 @@ class sspmod_selfregister_XHTML_Form {
 		if($actionEndpoint) $this->actionEndpoint = $actionEndpoint;
 
 		$config = SimpleSAML_Configuration::getInstance();
-		$this->translator = new SimpleSAML_XHTML_Template(
+		$this->transAttr = new SimpleSAML_XHTML_Template(
+			$config,
+			'selfregister:step1email.php', // Selected as a dummy
+			'attributes');
+		$this->transDesc = new SimpleSAML_XHTML_Template(
 			$config,
 			'selfregister:step1email.php', // Selected as a dummy
 			'selfregister:selfregister');
@@ -91,7 +96,12 @@ class sspmod_selfregister_XHTML_Form {
 
 	private function writeLabel($elementId){
 		$format = '<label for="%s">%s</label><br />';
-		$trLabel = htmlspecialchars($this->translator->t($elementId));
+		$trTag = strtolower('attribute_'.$elementId);
+		$trLabel = htmlspecialchars($this->transAttr->t($trTag));
+		// Got no translation, try again
+		if( (bool)strstr($trLabel, 'not translated') ) {
+			$trLabel = htmlspecialchars($this->transDesc->t($elementId));
+		}
 		$html = sprintf($format, $elementId, $trLabel);
 		return $html;
 	}
@@ -118,7 +128,7 @@ class sspmod_selfregister_XHTML_Form {
 	private function writeControlDescription($elementId) {
 		$format = '<br />%s';
 		$descId = $elementId.'_desc';
-		$trDesc = htmlspecialchars($this->translator->t($descId) );
+		$trDesc = htmlspecialchars($this->transDesc->t($descId) );
 
 		if( (bool)strstr($trDesc, 'not translated') ) {
 			return '';
