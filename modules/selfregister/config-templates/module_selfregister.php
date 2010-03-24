@@ -64,23 +64,15 @@ $config = array (
 		// uid and appended realm
 		'eduPersonPrincipalName' => 'eduPersonPrincipalName',
 		// Set from password walidataion and encryption
-		'userPassword' => 'userPassword'),
+		'userPassword' => 'userPassword'
+	),
 
 	// Is it a good solution to indicat read only values here?
 
 	// Web fields specification
 	// This controlls the order of the fields
 	'formFields' => array(
-		/*
-		'testint' => array(
-			'validate' => array(
-				'filter'    => FILTER_VALIDATE_INT,
-				'flags'     => FILTER_REQUIRE_ARRAY,
-				'options'   => array('min_range' => 1, 'max_range' => 10)
-				),
-			'layout' => array(),
-			), */
-		// First name (ldap: givenName)
+
 		'givenName' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
@@ -120,32 +112,24 @@ $config = array (
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'text',
-				),
-			), // end eduPersonPrincipalName
+			),
+		), // end eduPersonPrincipalName
 		'userPassword' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'password',
-				),
-			), // end pw1
+			),
+		), 
 		'pw1' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'password',
-				),
+		),// end pw1
 		'pw2' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'password',
-				),
-			), // end pw2
-		// Old password when change, or password given on time when changing
-		'oncepw' => array(
-			'validate' => FILTER_DEFAULT,
-			'layout' => array(
-				'control_type' => 'password',
-				),
-			), // end oncepw
-		),
+			),
+		), // end pw2
 
 );

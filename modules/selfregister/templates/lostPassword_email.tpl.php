@@ -18,7 +18,7 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
 		<tr class="even">
 		<td>E-mail</td><td>
 		<input type="text" size="50" name="emailreg" value="<?php
-		if (isset($this->data['email'])) echo $this->data['email'];
+		if (isset($this->data['email'])) echo htmlspecialchars($this->data['email']);
 		?>"/></td></tr>
 	</table>
 

@@ -86,16 +86,18 @@ class sspmod_selfregister_XHTML_Form {
 	}
 
 	private function writeFormElement($elementId){
-		$html = $this->writeLabel($elementId);
+		$html = '<div class="element">'; 
+		$html .= $this->writeLabel($elementId);
 		$html .= $this->writeInputControl($elementId);
 		$html .= $this->writeControlDescription($elementId);
+		$html .= '</div>';
 
 		return $html;
 	}
 
 
 	private function writeLabel($elementId){
-		$format = '<label for="%s">%s</label><br />';
+		$format = '<label for="%s">%s</label>';
 		$trTag = strtolower('attribute_'.$elementId);
 		$trLabel = htmlspecialchars($this->transAttr->t($trTag));
 		// Got no translation, try again
@@ -108,7 +110,7 @@ class sspmod_selfregister_XHTML_Form {
 
 
 	private function writeInputControl($elementId){
-		$format = '<input type="%s" id="%s" name="%s" value="%s" %s />';
+		$format = '<input class="inputelement" type="%s" id="%s" name="%s" value="%s" %s />';
 		$attr = '';
 		if(in_array($elementId, $this->readonly)){
 			$attr .= 'readonly="readonly"';
@@ -126,7 +128,7 @@ class sspmod_selfregister_XHTML_Form {
 
 
 	private function writeControlDescription($elementId) {
-		$format = '<br />%s';
+		$format = '%s';
 		$descId = $elementId.'_desc';
 		$trDesc = htmlspecialchars($this->transDesc->t($descId) );
 
@@ -134,7 +136,7 @@ class sspmod_selfregister_XHTML_Form {
 			return '';
 		}
 
-		$html = sprintf($format, $trDesc);
+		$html = '<p class="elementDescr">' . sprintf($format, $trDesc) . '</p>';
 		return $html;
 	}
 
@@ -152,7 +154,7 @@ class sspmod_selfregister_XHTML_Form {
 
 	private function writeFormSubmit(){
 		$html = '';
-		$format = '<input type="submit" name="%s" value="%s" /><br />';
+		$format = '<input type="submit" name="%s" value="%s" />';
 		$html = sprintf($format, $this->submitName, $this->submitValue);
 		return $html;
 	}
@@ -171,10 +173,8 @@ class sspmod_selfregister_XHTML_Form {
 				break;
 			default:
 				$html .= $this->writeFormElement($fId);
-				$html .= '<br />';
 			}
 		}
-		$html .= '<br />';
 		$html .= $this->writeFormSubmit();
 		$html .= $this->writeFormEnd();
 
