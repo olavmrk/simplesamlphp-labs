@@ -155,7 +155,8 @@ class sspmod_selfregister_XHTML_Form {
 	private function writeFormSubmit(){
 		$html = '';
 		$format = '<input type="submit" name="%s" value="%s" />';
-		$html = sprintf($format, $this->submitName, $this->submitValue);
+		$trValue = htmlspecialchars($this->transDesc->t($this->submitValue));
+		$html = sprintf($format, $this->submitName, $trValue);
 		return $html;
 	}
 

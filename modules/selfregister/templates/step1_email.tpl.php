@@ -29,7 +29,7 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
 
 	<p><?php echo $this->t('s1_para2'); ?></p>
 
-	<p><input type="submit" name="save" value="<?php echo $this->t('s1_send'); ?>" />
+	<p><input type="submit" name="save" value="<?php echo $this->t('submit_mail'); ?>" />
 
 </div>
 </form>

@@ -39,7 +39,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 				$email,
 				'',
 				'Try to reset password, but mail address not found: '.$email
-				);
+			);
 		}
 
 		$tg = new SimpleSAML_Auth_TimeLimitedToken($tokenLifetime);
@@ -87,7 +87,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		$error = $et->t(
 			$e->getMesgId(),
 			$e->getTrVars()
-			);
+		);
 		$et->data['error'] = htmlspecialchars($error);
 
 		$et->show();
@@ -121,7 +121,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 			'emailconfirmed' => $email,
 			'token' => $token);
 		$formGen->addHiddenData($hidden);
-
+		$formGen->setSubmitter('submit_change');
 		$formHtml = $formGen->genFormHtml();
 
 		$html = new SimpleSAML_XHTML_Template(
@@ -141,7 +141,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		$error = $terr->t(
 			$e->getMesgId(),
 			$e->getTrVars()
-			);
+		);
 		$terr->data['error'] = htmlspecialchar($error);
 
 		$terr->show();
@@ -194,6 +194,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  $formGen->addHiddenData($hidden);
 
 		  $formGen->setValues(array('uid' => $_REQUEST['uid']));
+		  $formGen->setSubmitter('submit_change');
 		  $formHtml = $formGen->genFormHtml();
 
 		  $html = new SimpleSAML_XHTML_Template(
@@ -203,13 +204,13 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  $html->data['formHtml'] = $formHtml;
 		  $html->data['uid'] = $userValues['uid'];
 
-		$error = $html->t(
+		  $error = $html->t(
 			  $e->getMesgId(),
 			  $e->getTrVars()
-			);
+		  );
 
-		$html->data['error'] = htmlspecialchars($error);
-		$html->show();
+		  $html->data['error'] = htmlspecialchars($error);
+		  $html->show();
 	  }
 	} else {
 	// Stage 1: User access page to enter mail address for pasword recovery

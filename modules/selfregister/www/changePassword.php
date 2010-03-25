@@ -19,7 +19,7 @@ $html = new SimpleSAML_XHTML_Template(
 	'selfregister:change_pw.tpl.php',
 	'selfregister:selfregister');
 
-if(array_key_exists('sender', $_REQUEST)){
+if(array_key_exists('sender', $_REQUEST)) {
 	// Stage 2: Form submitted
 	try{
 		$validator = new sspmod_selfregister_Registration_Validation(
@@ -31,10 +31,7 @@ if(array_key_exists('sender', $_REQUEST)){
 		$store->changeUserPassword($attributes['uid'][0], $newPw);
 		$html->data['userMessage'] = 'message_chpw';
 
-	}catch(sspmod_selfregister_Error_UserException $e){
-		$values = $validator->getRawInput();
-		$formGen->setValues($values);
-
+	} catch(sspmod_selfregister_Error_UserException $e) {
 		$error = $html->t(
 			$e->getMesgId(),
 			$e->getTrVars()
@@ -45,6 +42,7 @@ if(array_key_exists('sender', $_REQUEST)){
 	$as->logout('newUser.php');
 }
 
+$formGen->setSubmitter('submit_change');
 $html->data['formHtml'] = $formGen->genFormHtml();
 $html->data['uid'] = $attributes['uid'][0];
 $html->show();
