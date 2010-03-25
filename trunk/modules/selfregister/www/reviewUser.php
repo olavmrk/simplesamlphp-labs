@@ -1,6 +1,6 @@
 <?php
 
-  // Configuration
+// Configuration
 $config = SimpleSAML_Configuration::getInstance();
 $uregconf = SimpleSAML_Configuration::getConfig('module_selfregister.php');
 $eppnRealm = $uregconf->getString('user.realm');
@@ -35,7 +35,8 @@ if(array_key_exists('sender', $_POST)) {
 		// $listValidate = sspmod_selfregister_Util::genFieldView($reviewAttr);
 		$validator = new sspmod_selfregister_Registration_Validation(
 			$formFields,
-			$showFields);
+			$showFields
+		);
 		$validValues = $validator->validateInput();
 
 		// FIXME: Filter password
@@ -47,7 +48,8 @@ if(array_key_exists('sender', $_POST)) {
 
 		$userInfo = sspmod_selfregister_Util::processInput(
 			$validValues,
-			$reviewAttr);
+			$reviewAttr
+		);
 
 		$store = new sspmod_selfregister_Storage_UserCatalogue();
 
@@ -65,18 +67,19 @@ if(array_key_exists('sender', $_POST)) {
 		$error = $html->t(
 			$e->getMesgId(),
 			$e->getTrVars()
-			);
+		);
 
 		$html->data['error'] = htmlspecialchars($error);
 	}
 }elseif(array_key_exists('logout', $_GET)) {
 	$as->logout('newUser.php');
- } else {
+} else {
 	// The GET access this endpoint
 	$values = sspmod_selfregister_Util::filterAsAttributes($attributes, $reviewAttr);
 }
 
 $formGen->setValues($values);
+$formGen->setSubmitter('submit_change');
 $formHtml = $formGen->genFormHtml();
 $html->data['formHtml'] = $formHtml;
 $html->data['uid'] = $attributes['uid'][0];

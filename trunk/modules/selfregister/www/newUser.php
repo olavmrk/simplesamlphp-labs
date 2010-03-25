@@ -53,7 +53,9 @@ if(array_key_exists('emailreg', $_REQUEST)){
 				$url,
 				array(
 					'email' => $email,
-					'token' => $newToken));
+					'token' => $newToken
+				)
+			);
 
 			$mailt = new SimpleSAML_XHTML_Template(
 				$config,
@@ -122,8 +124,13 @@ if(array_key_exists('emailreg', $_REQUEST)){
 			'emailconfirmed' => $email,
 			'token' => $token);
 		$formGen->addHiddenData($hidden);
-		$formGen->setValues(array('mail' => $email));
+		$formGen->setValues(
+			array(
+				'mail' => $email
+			)
+		);
 
+		$formGen->setSubmitter('submit_change');
 		$formHtml = $formGen->genFormHtml();
 
 		$html = new SimpleSAML_XHTML_Template(
@@ -142,13 +149,13 @@ if(array_key_exists('emailreg', $_REQUEST)){
 		$error = $terr->t(
 			$e->getMesgId(),
 			$e->getTrVars()
-			);
+		);
 		$terr->data['error'] = htmlspecialchars($error);
 		$terr->data['systemName'] = $systemName;
 		$terr->show();
 	}
- }elseif(array_key_exists('sender', $_POST)){
-	 try{
+}elseif(array_key_exists('sender', $_POST)){
+	try{
 		 // Add or update user object
 		 $listValidate = sspmod_selfregister_Util::genFieldView($viewAttr);
 		 $validator = new sspmod_selfregister_Registration_Validation(
@@ -170,7 +177,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 
 		 $html->data['systemName'] = $systemName;
 		 $html->show();
-	 }catch(sspmod_selfregister_Error_UserException $e){
+	}catch(sspmod_selfregister_Error_UserException $e){
 		 // Some user error detected
 		 $formGen = new sspmod_selfregister_XHTML_Form($formFields, 'newUser.php');
 
@@ -184,8 +191,11 @@ if(array_key_exists('emailreg', $_REQUEST)){
 		 $values['mail'] = $hidden['emailconfirmed'] = $_REQUEST['emailconfirmed'];
 		 $hidden['token'] = $_REQUEST['token'];
 		 $formGen->addHiddenData($hidden);
+		 $values['pw1'] = '';
+		 $values['pw2'] = '';
 
 		 $formGen->setValues($values);
+		 $formGen->setSubmitter('submit_change');
 		 $formHtml = $formGen->genFormHtml();
 
 		 $html = new SimpleSAML_XHTML_Template(
@@ -197,12 +207,12 @@ if(array_key_exists('emailreg', $_REQUEST)){
 		$error = $html->t(
 			 $e->getMesgId(),
 			 $e->getTrVars()
-			);
+		);
 
 		$html->data['error'] = htmlspecialchars($error);
 		$html->show();
-	 }
-  }else{
+	}
+} else {
 	// Stage 1: New user clean access
 	$html = new SimpleSAML_XHTML_Template(
 		$config,
