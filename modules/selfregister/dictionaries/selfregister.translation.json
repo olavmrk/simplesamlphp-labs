@@ -39,11 +39,6 @@
 		"es": "Registrar una cuenta nueva en %SNAME%",
 		"de": "Neues Benutzerkonto bei %SNAME% anlegen"
 	},
-	"s1_send": {
-		"no": "Send epost",
-		"es": "Enviar e-mail",
-		"de": "E-Mail absenden"
-	},
 	"s3_head": {
 		"no": "Data for ny bruker",
 		"es": "Nueva informaci\u00f3n de usuario",
@@ -68,16 +63,6 @@
 		"no": "Nullstill glemt passord",
 		"es": "Reiniciar contrase\u00f1a perdida",
 		"de": "Vergessenes Pa\u00dfwort zur\u00fccksetzen"
-	},
-	"lpw_send": {
-		"no": "Send epost",
-		"es": "Enviar e-mail",
-		"de": "E-Mail absenden"
-	},
-	"lpw_reg_head": {
-		"no": "Nullstill passord",
-		"es": "Reiniciar contrase\u00f1a",
-		"de": "Pa\u00dfwort zur\u00fccksetzen"
 	},
 	"lpw_success_head": {
 		"no": "Mail er sendt",
@@ -253,5 +238,11 @@
 		"es": "Suministraste un token inv\u00e1lido. La raz\u00f3n m\u00e1s com\u00fan por la que un token se vuelve no v\u00e1lido es porque alcaz\u00f3 la restricci\u00f3n temporal, s\u00f3lo es v\u00e1lido durante un periodo de tiempo. Reg\u00edstrate de nuevo para conseguir otro t\u00f3ken.",
 		"de": "Ung\u00fcltiger Code. Der h\u00e4ufigste Grund f\u00fcr ung\u00fcltige Codes ist der Ablauf des Codes, da alle Codes nur begrenzte Zeit g\u00fcltig sind. Beginnen Sie die Registrierung erneut, dann erhalten Sie auch einen neuen Code.",
 		"no": "Ugyldig billett. Den mest vanlige \u00e5rsaken til at en billett blir ugyldig er at den har utl\u00f8pt p\u00e5 tid siden den ble sendt til deg. Fors\u00f8k \u00e5 registrer deg p\u00e5 nytt for \u00e5 f\u00e5 en ny billett."
+	},
+	"submit_mail": {
+		"no": "Send e-post"
+	},
+	"submit_change": {
+		"no": "Lagre endring"
 	}
 }
