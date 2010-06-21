@@ -4,6 +4,7 @@
 $config = SimpleSAML_Configuration::getInstance();
 $uregconf = SimpleSAML_Configuration::getConfig('module_selfregister.php');
 $eppnRealm = $uregconf->getString('user.realm');
+$user_id_param = $uregconf->getString('user.id.param', 'uid');
 
 /* Get a reference to our authentication source. */
 $asId = $uregconf->getString('auth');
@@ -16,8 +17,18 @@ $attributes = $as->getAttributes();
 
 $formFields = $uregconf->getArray('formFields');
 $reviewAttr = $uregconf->getArray('attributes');
-$showFields = array('givenName', 'sn', 'mail');
-$readOnlyFields = array('mail');
+
+$showFields = array();
+$readOnlyFields = array();
+
+foreach ($formFields as $name => $field) {
+	if(array_key_exists('show',$field['layout']) && $field['layout']['show']) {
+		$showFields[] = $name;
+	}
+	if(array_key_exists('read_only',$field['layout']) && $field['layout']['read_only']) {
+		$readOnlyFields[] = $name;
+	}
+}
 
 $formGen = new sspmod_selfregister_XHTML_Form($formFields, 'reviewUser.php');
 $formGen->fieldsToShow($showFields);
@@ -32,7 +43,6 @@ $html = new SimpleSAML_XHTML_Template(
 if(array_key_exists('sender', $_POST)) {
 	try{
 		// Update user object
-		// $listValidate = sspmod_selfregister_Util::genFieldView($reviewAttr);
 		$validator = new sspmod_selfregister_Registration_Validation(
 			$formFields,
 			$showFields
@@ -44,7 +54,6 @@ if(array_key_exists('sender', $_POST)) {
 		$reviewAttr = array_diff_key($reviewAttr, $remove);
 
 		$eppnRealm = $uregconf->getString('user.realm');
-		$uid = $validValues['uid'] = $attributes['uid'][0];
 
 		$userInfo = sspmod_selfregister_Util::processInput(
 			$validValues,
@@ -53,9 +62,28 @@ if(array_key_exists('sender', $_POST)) {
 
 		$store = new sspmod_selfregister_Storage_UserCatalogue();
 
-		$store->updateUser($uid, $userInfo);
+		// Check that user identifier not change
+		if($attributes[$user_id_param][0] != $userInfo[$user_id_param]) {
+			throw new sspmod_selfregister_Error_UserException('id_violation');
+		}
 
-		$values = $validator->getRawInput();
+		$store->updateUser($attributes, $userInfo);
+
+		// I must override the values with the userInfo values due in processInput i can change the values.
+		// But now atributes from the logged user is obsolete, So I can actualize it and get values from session
+		// but maybe we could have security problem if IdP isnt configured correctly.
+
+		$session = SimpleSAML_Session::getInstance();
+		$session->setAttribute('givenName', array(0 => 'migivenname'));
+
+		foreach($userInfo as $name => $value) {
+			$attributes[$name][0] = $value;
+			$session->setAttribute($name, $attributes[$name]);
+		}
+
+		$attributes = $as->getAttributes();
+		$values = sspmod_selfregister_Util::filterAsAttributes($attributes, $reviewAttr);
+
 		$html->data['userMessage'] = 'message_chuinfo';
 
 	}catch(sspmod_selfregister_Error_UserException $e){
@@ -72,7 +100,7 @@ if(array_key_exists('sender', $_POST)) {
 		$html->data['error'] = htmlspecialchars($error);
 	}
 }elseif(array_key_exists('logout', $_GET)) {
-	$as->logout('newUser.php');
+	$as->logout('index.php');
 } else {
 	// The GET access this endpoint
 	$values = sspmod_selfregister_Util::filterAsAttributes($attributes, $reviewAttr);
@@ -82,7 +110,7 @@ $formGen->setValues($values);
 $formGen->setSubmitter('submit_change');
 $formHtml = $formGen->genFormHtml();
 $html->data['formHtml'] = $formHtml;
-$html->data['uid'] = $attributes['uid'][0];
+$html->data['uid'] = $attributes[$user_id_param][0];
 $html->show();
 
 ?>

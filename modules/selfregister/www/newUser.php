@@ -213,12 +213,18 @@ if(array_key_exists('emailreg', $_REQUEST)){
 		$html->show();
 	}
 } else {
+
 	// Stage 1: New user clean access
 	$html = new SimpleSAML_XHTML_Template(
 		$config,
 		'selfregister:step1_email.tpl.php',
 		'selfregister:selfregister');
 	$html->data['systemName'] = $systemName;
+
+	$logged_and_same_auth = sspmod_selfregister_Util::checkLoggedAndSameAuth();
+	if($logged_and_same_auth) {
+		$html->data['logouturl'] = $logged_and_same_auth->getLogoutURL();
+	}
 	$html->show();
 }
 

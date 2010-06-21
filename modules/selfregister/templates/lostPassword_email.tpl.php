@@ -1,6 +1,7 @@
 <?php
 
-$this->data['head'] = '<link rel="stylesheet" href="resources/umesg.css" type="text/css">';
+$this->data['header'] = $this->t('{selfregister:selfregister:link_lostpw}');
+$this->data['head'] = '<link rel="stylesheet" href="resources/selfregister.css" type="text/css">';
 
 $this->includeAtTemplateBase('includes/header.php'); ?>
 
@@ -28,5 +29,11 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
 
 </div>
 </form>
+
+<p>
+<ul>
+	<li><a href="index.php"><?php echo $this->t('return'); ?></a></li>
+</ul>
+</p>
 
 <?php $this->includeAtTemplateBase('includes/footer.php'); ?>

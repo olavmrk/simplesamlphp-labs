@@ -1,6 +1,7 @@
 <?php
 
-$this->data['head'] = '<link rel="stylesheet" href="resources/umesg.css" type="text/css">';
+$this->data['header'] = $this->t('{selfregister:selfregister:link_newuser}');
+$this->data['head'] = '<link rel="stylesheet" href="resources/selfregister.css" type="text/css">';
 
 $this->includeAtTemplateBase('includes/header.php'); ?>
 
@@ -33,10 +34,13 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
 
 </div>
 </form>
+
 <h2><?php echo $this->t('new_head_other'); ?></h2>
 <ul>
-    <li><a href="reviewUser.php"><?php echo $this->t('link_review'); ?></a></li>
-	<li><a href="lostPassword.php"><?php echo $this->t('link_lostpw'); ?></li>
-	<li><a href="changePassword.php"><?php echo $this->t('link_changepw'); ?></li>
-</ul>
-<?php $this->includeAtTemplateBase('includes/footer.php'); ?>
+	<li><a href="index.php"><?php echo $this->t('return'); ?></a></li>
+<?php if (isset($this->data['logouturl'])) {?>
+	<li><a href="<?php echo $this->data['logouturl'];?>"><?php echo $this->t('{status:logout}'); ?></li>
+<?php } 
+echo '</ul>';
+
+$this->includeAtTemplateBase('includes/footer.php'); ?>

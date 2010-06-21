@@ -7,6 +7,7 @@ $viewAttr = $uregconf->getArray('attributes');
 $formFields = $uregconf->getArray('formFields');
 $eppnRealm = $uregconf->getString('user.realm');
 $store = new sspmod_selfregister_Storage_UserCatalogue();
+$user_id_param = $uregconf->getString('user.id.param', 'uid');
 
 if (array_key_exists('emailreg', $_REQUEST)) {
 	// Stage 2: User have submitted e-mail adress for password recovery
@@ -129,7 +130,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 			'selfregister:lostPassword_changePassword.tpl.php',
 			'selfregister:selfregister');
 		$html->data['formHtml'] = $formHtml;
-		$html->data['uid'] = $userValues['uid'];
+		$html->data['uid'] = $userValues[$user_id_param];
 		$html->show();
 	} catch(sspmod_selfregister_Error_UserException $e) {
 		// Invalid token
@@ -171,10 +172,9 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 			  throw new sspmod_selfregister_Error_UserException('invalid_token');
 
 		  $userValues = $store->getUser('mail', $email);
-		  $uid = $userValues['uid'];
 		  $validValues = $validator->validateInput();
 		  $newPw = sspmod_selfregister_Util::validatePassword($validValues);
-		  $store->changeUserPassword($uid, $newPw);
+		  $store->changeUserPassword($userValues, $newPw);
 
 		  $html = new SimpleSAML_XHTML_Template(
 			  $config,
@@ -193,7 +193,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  $hidden['token'] = $_REQUEST['token'];
 		  $formGen->addHiddenData($hidden);
 
-		  $formGen->setValues(array('uid' => $_REQUEST['uid']));
+		  $formGen->setValues(array($user_id_param => $_REQUEST[$user_id_param]));
 		  $formGen->setSubmitter('submit_change');
 		  $formHtml = $formGen->genFormHtml();
 
@@ -202,7 +202,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 			  'selfregister:lostPassword_changePassword.tpl.php',
 			  'selfregister:selfregister');
 		  $html->data['formHtml'] = $formHtml;
-		  $html->data['uid'] = $userValues['uid'];
+		  $html->data['uid'] = $userValues[$user_id_param];
 
 		  $error = $html->t(
 			  $e->getMesgId(),
