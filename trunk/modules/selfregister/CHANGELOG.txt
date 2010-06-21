@@ -1,0 +1,17 @@
+List of Changes on the revision 33 of selfregister module:
+
+- Fixed most of the FIXMEs founded in the code.
+- Added dictionaries/selfregister.php to make the module compatible with SimpleSAMLphp 1.5 version. (many ppl still use it)
+- Changed the workflow: Now auth tab show a link to the module index view. This index view shows links depending if the user is authenticate in the same
+  auth-source that is using the selfregister module.
+- Changed the workflow: Create/change some links in the different views.
+- Now you can set the visibility and the editable option of the fields in selfregistration config file.
+- Encription password configurable in selfregistration config file.
+- Now the selfregistration module check if 
+- Implemente delete user function. When user is deleted the user is logged out.
+- Added checkLoggedAndSameAuth function in lib/Util.php to check if user is authenticated in the auth-source of the registration module.
+- Moved some lib/Util.php function code. Now some funcions are implemented in hooks/hook_attributes.php. Admin will be able to customize it.
+- Create get_dn_hook and get_cn_hook functions in hooks/hook_attributes.php. Admin will be able to customize it.
+- Uncouple uid from the code. Now the 'user id param' is set in selfregistration config file.
+- Added headers title and css in all views. (changed css name.Now is called instead 'selfregister' of 'umesg').
+

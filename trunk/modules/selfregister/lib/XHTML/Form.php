@@ -8,6 +8,7 @@ class sspmod_selfregister_XHTML_Form {
 	private $hidden = array();
 	private $readonly = array();
 	private $disabled = array();
+	private $size = 20;
 	private $actionEndpoint = '?';
 	private $transAttr = NULL;
 	private $transDesc = NULL;
@@ -30,6 +31,7 @@ class sspmod_selfregister_XHTML_Form {
 			$config,
 			'selfregister:step1email.php', // Selected as a dummy
 			'selfregister:selfregister');
+
 	}
 
 
@@ -110,29 +112,39 @@ class sspmod_selfregister_XHTML_Form {
 
 
 	private function writeInputControl($elementId){
-		$format = '<input class="inputelement" type="%s" id="%s" name="%s" value="%s" %s />';
-		$attr = '';
-		if(in_array($elementId, $this->readonly)){
-			$attr .= 'readonly="readonly"';
-		}
-		if(in_array($elementId, $this->disabled)){
-			$attr .= 'disabled="disabled"';
-		}
-		$type = $this->layout[$elementId]['control_type'];
 		$value = isset($this->values[$elementId])?$this->values[$elementId]:'';
 		$value = htmlspecialchars($value);
-		$html = sprintf($format, $type, $elementId, $elementId, $value, $attr);
+		if($this->actionEndpoint != 'delUser.php') {
+			$format = '<input class="inputelement" type="%s" id="%s" name="%s" value="%s" size="%s" %s />';
+			$attr = '';
+			if(in_array($elementId, $this->readonly)){
+				$attr .= 'readonly="readonly"';
+			}
+			if(in_array($elementId, $this->disabled)){
+				$attr .= 'disabled="disabled"';
+			}
+			if(in_array($elementId, $this->disabled)){
+				$attr .= 'disabled="disabled"';
+			}
+
+			$type = $this->layout[$elementId]['control_type'];
+			$html = sprintf($format, $type, $elementId, $elementId, $value, $attr, $this->size);
+		}
+		else {
+			$format = '<br>%s<input type="hidden" id="%s" name="%s" value="%s" >';
+			$html = sprintf($format, $value, $elementId, $elementId, $value);
+		}
 
 		return $html;
 	}
 
 
 	private function writeControlDescription($elementId) {
+
 		$format = '%s';
 		$descId = $elementId.'_desc';
 		$trDesc = htmlspecialchars($this->transDesc->t($descId) );
-
-		if( (bool)strstr($trDesc, 'not translated') ) {
+		if($this->actionEndpoint == 'delUser.php' || (bool)strstr($trDesc, 'not translated') ) {
 			return '';
 		}
 

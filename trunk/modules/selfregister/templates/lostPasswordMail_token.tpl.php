@@ -1,3 +1,4 @@
+
 <h1><?php echo $this->t('mailLost_header', $this->data['systemName']);?></h1>
 
 <p><?php echo $this->t('mailLost_urlintro', $this->data['systemName']);?></p>

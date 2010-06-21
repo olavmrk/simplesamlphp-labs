@@ -5,7 +5,7 @@
 
 	"definition"	: "http://simplesamlphp-labs.googlecode.com/svn/trunk/modules/selfregister/definition.json",
 	"branch"		: "dev",
-	
+
 	"dependencies"	: ["saml"],
 
 	"access"		: {
@@ -15,5 +15,5 @@
 			"url"		: "http://simplesamlphp-labs.googlecode.com/svn/trunk/modules/selfregister"
 		}
 	}
-	
+
 }

@@ -8,20 +8,7 @@ function selfregister_hook_frontpage(&$links) {
 	assert('array_key_exists("links", $links)');
 
 	$links['auth'][] = array(
-		'href' => SimpleSAML_Module::getModuleURL('selfregister/newUser.php'),
-		'text' => '{selfregister:selfregister:link_newuser}',
+		'href' => SimpleSAML_Module::getModuleURL('selfregister/index.php'),
+		'text' => '{selfregister:selfregister:link_panel}',
 	);
-	$links['auth'][] = array(
-		'href' => SimpleSAML_Module::getModuleURL('selfregister/reviewUser.php'),
-		'text' => '{selfregister:selfregister:link_review}',
-	);
-	$links['auth'][] = array(
-		'href' => SimpleSAML_Module::getModuleURL('selfregister/lostPassword.php'),
-		'text' => '{selfregister:selfregister:link_lostpw}',
-	);
-	$links['auth'][] = array(
-		'href' => SimpleSAML_Module::getModuleURL('selfregister/changePassword.php'),
-		'text' => '{selfregister:selfregister:link_changepw}',
-	);
-
 }

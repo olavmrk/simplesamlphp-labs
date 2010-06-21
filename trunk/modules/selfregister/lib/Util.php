@@ -3,85 +3,38 @@
 class sspmod_selfregister_Util {
 
 	public static function genFieldView($viewAttr){
-		$fields = array();
-		foreach($viewAttr as $attrName => $fieldName){
-			switch($attrName){
-			case "userPassword":
-				$fields[] = 'pw1';
-				$fields[] = 'pw2';
-				break;
-			case "cn":
-			case "eduPersonPrincipalName":
-				break;
-			default:
-				$fields[] = $fieldName;
-			}
-		}
-		return $fields;
+		$hookfile = SimpleSAML_Module::getModuleDir('selfregister') . '/hooks/hook_attributes.php';
+		include_once($hookfile);
+		return genFieldView($viewAttr);
 	}
 
 
-
-
-
-	// For new registration, should also work for updated information
-	public static function processInput($fieldValues, $expectedValues){
-
-		global $eppnRealm;
-		$skv = array();
-
-		foreach($expectedValues as $db => $field){
-			switch($db){
-			case "cn":
-				$skv[$db] = $fieldValues['givenName'].' '.$fieldValues['sn'];
-				break;
-			case "userPassword":
-				$skv[$db] = self::validatePassword($fieldValues);
-				break;
-			case "eduPersonPrincipalName":
-				$skv[$db] = $fieldValues['uid'].'@'.$eppnRealm;
-				break;
-			case "mail":
-				if(array_key_exists('token', $_POST)){
-					global $tokenLifetime;
-					$tg = new SimpleSAML_Auth_TimeLimitedToken($tokenLifetime);
-					$email = $_POST['emailconfirmed'];
-					$tg->addVerificationData($email);
-					$token = $_POST['token'];
-					if (!$tg->validate_token($token)){
-						throw new sspmod_selfregister_Error_UserException(
-							'invalid_token');
-					}
-					$skv[$db] = $email;
-				}
-				break;
-			default:
-				$skv[$db] = $fieldValues[$field];
+	public static function checkLoggedAndSameAuth() {
+		$session = SimpleSAML_Session::getInstance();
+		if($session->isAuthenticated()) {
+			$uregconf = SimpleSAML_Configuration::getConfig('module_selfregister.php');
+			/* Get a reference to our authentication source. */
+			$asId = $uregconf->getString('auth');
+			if($session->getAuthority() == $asId) {
+				return new SimpleSAML_Auth_Simple($asId);
 			}
 		}
+		return false;
+	}
 
-		return $skv;
+
+	public static function processInput($fieldValues, $expectedValues){
+		$hookfile = SimpleSAML_Module::getModuleDir('selfregister') . '/hooks/hook_attributes.php';
+		include_once($hookfile);
+		return processInput($fieldValues, $expectedValues);
 	}
 
 
 	public static function filterAsAttributes($asAttributes, $reviewAttr){
-		$attr = array();
-
-		foreach($reviewAttr as $attrName => $fieldName){
-			switch($attrName){
-			case "userPassword":
-				break;
-			default:
-				if(array_key_exists($attrName, $asAttributes)){
-					$attr[$fieldName] = $asAttributes[$attrName][0];
-				}
-			}
-		}
-		return $attr;
+		$hookfile = SimpleSAML_Module::getModuleDir('selfregister') . '/hooks/hook_attributes.php';
+		include_once($hookfile);
+		return filterAsAttributes($asAttributes, $reviewAttr);
 	}
-
-
-
 
 	public static function validatePassword($fieldValues){
 		if($fieldValues['pw1'] == $fieldValues['pw2']){
@@ -90,7 +43,6 @@ class sspmod_selfregister_Util {
 			throw new sspmod_selfregister_Error_UserException('err_retype_pw');
 		}
 	}
-
 
 }
 

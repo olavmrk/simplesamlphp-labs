@@ -1,6 +1,7 @@
 <?php
 
-$this->data['head'] = '<link rel="stylesheet" href="resources/umesg.css" type="text/css">';
+$this->data['header'] = $this->t('{selfregister:selfregister:link_newuser}');
+$this->data['head'] = '<link rel="stylesheet" href="resources/selfregister.css" type="text/css">';
 
 $this->includeAtTemplateBase('includes/header.php'); ?>
 

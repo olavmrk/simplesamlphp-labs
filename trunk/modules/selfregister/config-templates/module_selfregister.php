@@ -1,9 +1,7 @@
 <?php
-  /*
-   * The configuration of wikiplex
-   *
-   *
-   */
+/**
+ * The configuration of selfregistration module
+ */
 
 $config = array (
 
@@ -22,6 +20,11 @@ $config = array (
 	'mail.replyto'  => 'Example <na@example.org>',
 	'mail.subject'  => 'Example - email verification',
 
+	// User id parameter
+	'user.id.param' => 'uid',
+
+	// plain, md5, sha1
+	'psw.encrypt' => 'sha1',
 
 	// Db backend
 	'storage.backend' => 'LdapMod',
@@ -41,7 +44,7 @@ $config = array (
 			'eduPerson',
 			'norEduPerson'
 			),
-		), // end Ldap config
+	), // end Ldap config
 
 	// AWS SimpleDB configuration
 
@@ -64,54 +67,66 @@ $config = array (
 		// uid and appended realm
 		'eduPersonPrincipalName' => 'eduPersonPrincipalName',
 		// Set from password walidataion and encryption
-		'userPassword' => 'userPassword'
+		'userPassword' => 'userPassword',
 	),
-
-	// Is it a good solution to indicat read only values here?
 
 	// Web fields specification
 	// This controlls the order of the fields
 	'formFields' => array(
-
+		// UID
+		'uid' => array(
+			'validate' => array(
+				'filter'  => FILTER_VALIDATE_REGEXP,
+				'options' => array("regexp"=>"/^[a-z]{1}[a-z0-9\-]{2,15}$/")
+			),
+			'layout' => array(
+				'control_type' => 'text',
+				'show' => true,
+				'read_only' => true,
+			),
+		), // end uid
 		'givenName' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
-				'control_type' => 'text'),
-			), // end givenName
+				'control_type' => 'text',
+				'show' => true,
+				'read_only' => false,
+			),
+		), // end givenName
 		// Surname (ldap: sn)
 		'sn' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'text',
-				),
-			), // end ename
+				'show' => true,
+				'read_only' => false,
+			),
+		), // end ename
 		'mail' => array(
 			'validate' => FILTER_VALIDATE_EMAIL,
 			'layout' => array(
 				'control_type' => 'text',
-				),
-			), // end mail
-		'uid' => array(
-			'validate' => array(
-				'filter'  => FILTER_VALIDATE_REGEXP,
-				'options' => array("regexp"=>"/^[a-z]{1}[a-z0-9\-]{2,15}$/")
-				),
-			'layout' => array(
-				'control_type' => 'text',
-				),
-			), // end uid
+				'show' => true,
+				'read_only' => false,
+			),
+		), // end mail
 		// Common name: read only
 		'cn' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'text',
-				),
-			), // end cn
+				'show' => true,
+				'read_only' => false,
+				'size' => '35',
+			),
+		), // end cn
 		// eduPersonPrincipalName
 		'eduPersonPrincipalName' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'text',
+				'show' => true,
+				'read_only' => false,
 			),
 		), // end eduPersonPrincipalName
 		'userPassword' => array(
@@ -124,12 +139,14 @@ $config = array (
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'password',
-		),// end pw1
+			),
+		),
 		'pw2' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
 				'control_type' => 'password',
 			),
 		), // end pw2
+	),
 
 );
