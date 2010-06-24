@@ -3,7 +3,9 @@
 $config = SimpleSAML_Configuration::getInstance();
 $uregconf = SimpleSAML_Configuration::getConfig('module_selfregister.php');
 $formFields = $uregconf->getArray('formFields');
-$user_id_param = $uregconf->getString('user.id.param', 'uid');
+$storeConf = SimpleSAML_Configuration::loadFromArray(
+	sspmod_selfregister_Storage_UserCatalogue::getSelectedStorageConfig() );
+$user_id_param = $storeConf->getString('user.id.param', 'uid');
 
 /* Get a reference to our authentication source. */
 $asId = $uregconf->getString('auth');
@@ -28,8 +30,8 @@ if(array_key_exists('sender', $_REQUEST)) {
 			$fields );
 		$validValues = $validator->validateInput();
 		$newPw = sspmod_selfregister_Util::validatePassword($validValues);
-		$store = new sspmod_selfregister_Storage_UserCatalogue();
-		$store->changeUserPassword($attributes, $newPw);
+		$store = sspmod_selfregister_Storage_UserCatalogue::instantiateStorage();
+		$store->changeUserPassword($attributes[$user_id_param][0], $newPw);
 		$html->data['userMessage'] = 'message_chpw';
 
 	} catch(sspmod_selfregister_Error_UserException $e) {
