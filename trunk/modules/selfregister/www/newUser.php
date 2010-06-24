@@ -8,6 +8,7 @@ $formFields = $uregconf->getArray('formFields');
 $eppnRealm = $uregconf->getString('user.realm');
 $systemName = array('%SNAME%' => $uregconf->getString('system.name') );
 
+
 if(array_key_exists('emailreg', $_REQUEST)){
 	// Stage 2: User have submitted e-mail adress for registration
 	try {
@@ -33,7 +34,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 			}
 		}
 
-		$store = new sspmod_selfregister_Storage_UserCatalogue();
+		$store = sspmod_selfregister_Storage_UserCatalogue::instantiateStorage();
 		if($store->isRegistered('mail', $email) ) {
 			$html = new SimpleSAML_XHTML_Template(
 				$config,
@@ -166,7 +167,7 @@ if(array_key_exists('emailreg', $_REQUEST)){
 
 		 $userInfo = sspmod_selfregister_Util::processInput($validValues, $viewAttr);
 
-		 $store = new sspmod_selfregister_Storage_UserCatalogue();
+		 $store = sspmod_selfregister_Storage_UserCatalogue::instantiateStorage();
 
 		 $store->addUser($userInfo);
 

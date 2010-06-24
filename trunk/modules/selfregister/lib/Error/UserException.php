@@ -1,6 +1,5 @@
 <?php
 
-
   /* This is exceptions most probable caused by a user mistake.
    * Shoud be able to recover if the user is given proper information and the
    * chance to try again.

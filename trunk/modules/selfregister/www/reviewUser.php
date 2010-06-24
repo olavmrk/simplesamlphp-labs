@@ -1,6 +1,5 @@
 <?php
 
-// Configuration
 $config = SimpleSAML_Configuration::getInstance();
 $uregconf = SimpleSAML_Configuration::getConfig('module_selfregister.php');
 $eppnRealm = $uregconf->getString('user.realm');
@@ -9,6 +8,7 @@ $user_id_param = $uregconf->getString('user.id.param', 'uid');
 /* Get a reference to our authentication source. */
 $asId = $uregconf->getString('auth');
 $as = new SimpleSAML_Auth_Simple($asId);
+
 /* Require the usr to be authentcated. */
 $as->requireAuth();
 
@@ -37,7 +37,8 @@ $formGen->setReadOnly($readOnlyFields);
 $html = new SimpleSAML_XHTML_Template(
 	$config,
 	'selfregister:reviewuser.tpl.php',
-	'selfregister:selfregister');
+	'selfregister:selfregister'
+);
 
 
 if(array_key_exists('sender', $_POST)) {
@@ -60,7 +61,7 @@ if(array_key_exists('sender', $_POST)) {
 			$reviewAttr
 		);
 
-		$store = new sspmod_selfregister_Storage_UserCatalogue();
+		$store = sspmod_selfregister_Storage_UserCatalogue::instantiateStorage();
 
 		// Check that user identifier not change
 		if($attributes[$user_id_param][0] != $userInfo[$user_id_param]) {

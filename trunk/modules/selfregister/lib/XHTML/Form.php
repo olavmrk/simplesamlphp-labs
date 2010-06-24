@@ -88,7 +88,7 @@ class sspmod_selfregister_XHTML_Form {
 	}
 
 	private function writeFormElement($elementId){
-		$html = '<div class="element">'; 
+		$html = '<div class="element">';
 		$html .= $this->writeLabel($elementId);
 		$html .= $this->writeInputControl($elementId);
 		$html .= $this->writeControlDescription($elementId);
@@ -128,7 +128,7 @@ class sspmod_selfregister_XHTML_Form {
 			}
 
 			$type = $this->layout[$elementId]['control_type'];
-			$html = sprintf($format, $type, $elementId, $elementId, $value, $attr, $this->size);
+			$html = sprintf($format, $type, $elementId, $elementId, $value, $this->size, $attr);
 		}
 		else {
 			$format = '<br>%s<input type="hidden" id="%s" name="%s" value="%s" >';

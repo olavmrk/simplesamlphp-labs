@@ -1,6 +1,6 @@
 <?php
 
-   /* 
+   /*
 	* Function to obtain a dn from basedn and entry object (user) values
 	*
 	*  Used in lib/Storage/UserCatalogue.php
@@ -8,7 +8,7 @@
 	* @param  	object	$localconfig	Local ldap source configuration params (from config/authsources.php)
 	* @param  	object	$userinfo		User values.
 	* @return 	string  $dn				ldap unique name
-	*/ 
+	*/
 	function get_dn_hook($localconfig, $registerconfig, $userinfo) {
 		$base = $localconfig->getString('search.base');
 		$user_id_param = $registerconfig->getString('user.id.param', 'uid');
@@ -21,14 +21,14 @@
 		return $dn;
 	}
 
-   /* 
+   /*
 	* Function to obtain a dn from basedn and entry object (user) values
 	*
 	*  Used in lib/Util.php
 	*
 	* @param  	object	$userinfo		User values
 	* @return 	string  $cn				ldap common name
-	*/ 
+	*/
 
 	function get_cn_hook($userinfo) {
 		$givenName = $userinfo['givenName'];

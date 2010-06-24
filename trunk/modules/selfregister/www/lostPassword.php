@@ -6,8 +6,10 @@ $tokenLifetime = $uregconf->getInteger('mailtoken.lifetime');
 $viewAttr = $uregconf->getArray('attributes');
 $formFields = $uregconf->getArray('formFields');
 $eppnRealm = $uregconf->getString('user.realm');
-$store = new sspmod_selfregister_Storage_UserCatalogue();
-$user_id_param = $uregconf->getString('user.id.param', 'uid');
+$store = sspmod_selfregister_Storage_UserCatalogue::instantiateStorage();
+$storeConf = SimpleSAML_Configuration::loadFromArray(
+	sspmod_selfregister_Storage_UserCatalogue::getSelectedStorageConfig() );
+$user_id_param = $storeConf->getString('user.id.param', 'uid');
 
 if (array_key_exists('emailreg', $_REQUEST)) {
 	// Stage 2: User have submitted e-mail adress for password recovery
@@ -116,7 +118,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		$showFields = array('pw1', 'pw2');
 		$formGen->fieldsToShow($showFields);
 
-		$userValues = $store->getUser('mail', $email);
+		$userValues = $store->findAndGetUser('mail', $email);
 
 		$hidden = array(
 			'emailconfirmed' => $email,
@@ -171,10 +173,10 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  if (!$tg->validate_token($token))
 			  throw new sspmod_selfregister_Error_UserException('invalid_token');
 
-		  $userValues = $store->getUser('mail', $email);
+		  $userValues = $store->findAndGetUser('mail', $email);
 		  $validValues = $validator->validateInput();
 		  $newPw = sspmod_selfregister_Util::validatePassword($validValues);
-		  $store->changeUserPassword($userValues, $newPw);
+		  $store->changeUserPassword($userValues[$user_id_param], $newPw);
 
 		  $html = new SimpleSAML_XHTML_Template(
 			  $config,
