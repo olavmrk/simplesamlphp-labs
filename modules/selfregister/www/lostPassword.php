@@ -7,9 +7,7 @@ $viewAttr = $uregconf->getArray('attributes');
 $formFields = $uregconf->getArray('formFields');
 $eppnRealm = $uregconf->getString('user.realm');
 $store = sspmod_selfregister_Storage_UserCatalogue::instantiateStorage();
-$storeConf = SimpleSAML_Configuration::loadFromArray(
-	sspmod_selfregister_Storage_UserCatalogue::getSelectedStorageConfig() );
-$user_id_param = $storeConf->getString('user.id.param', 'uid');
+
 
 if (array_key_exists('emailreg', $_REQUEST)) {
 	// Stage 2: User have submitted e-mail adress for password recovery
@@ -132,7 +130,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 			'selfregister:lostPassword_changePassword.tpl.php',
 			'selfregister:selfregister');
 		$html->data['formHtml'] = $formHtml;
-		$html->data['uid'] = $userValues[$user_id_param];
+		$html->data['uid'] = $userValues[$store->userIdAttr];
 		$html->show();
 	} catch(sspmod_selfregister_Error_UserException $e) {
 		// Invalid token
@@ -176,7 +174,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  $userValues = $store->findAndGetUser('mail', $email);
 		  $validValues = $validator->validateInput();
 		  $newPw = sspmod_selfregister_Util::validatePassword($validValues);
-		  $store->changeUserPassword($userValues[$user_id_param], $newPw);
+		  $store->changeUserPassword($userValues[$store->userIdAttr], $newPw);
 
 		  $html = new SimpleSAML_XHTML_Template(
 			  $config,
@@ -195,7 +193,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 		  $hidden['token'] = $_REQUEST['token'];
 		  $formGen->addHiddenData($hidden);
 
-		  $formGen->setValues(array($user_id_param => $_REQUEST[$user_id_param]));
+		  $formGen->setValues(array($store->userIdAttr => $_REQUEST[$store->userIdAttr]));
 		  $formGen->setSubmitter('submit_change');
 		  $formHtml = $formGen->genFormHtml();
 
@@ -204,7 +202,7 @@ if (array_key_exists('emailreg', $_REQUEST)) {
 			  'selfregister:lostPassword_changePassword.tpl.php',
 			  'selfregister:selfregister');
 		  $html->data['formHtml'] = $formHtml;
-		  $html->data['uid'] = $userValues[$user_id_param];
+		  $html->data['uid'] = $userValues[$store->userIdAttr];
 
 		  $error = $html->t(
 			  $e->getMesgId(),

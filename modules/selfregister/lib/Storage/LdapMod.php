@@ -9,7 +9,7 @@ class sspmod_selfregister_Storage_LdapMod extends SimpleSAML_Auth_LDAP implement
 	private $searchPw = NULL;
 	private $searchBase = NULL;
 	private $dnPattern = NULL;
-	private $userIdAttr = NULL;
+	public $userIdAttr = NULL;
 	private $attributes = NULL;
 	private $objectClass = NULL;
 	private $pswEncrypt = NULL;
@@ -149,14 +149,12 @@ class sspmod_selfregister_Storage_LdapMod extends SimpleSAML_Auth_LDAP implement
 
 	public function isRegistered($searchKeyName, $value){
 		// FIXME: Bind as search or admin user to make sure we have rights for searching
-		return (bool)$this->searchForFirstDn(
-			$this->searchBase, $searchKeyName, $value
-		);
+		return (bool)$this->searchfordn($this->searchBase, $searchKeyName, $value, TRUE);
 	}
 
 
 	public function findAndGetUser($keyName, $value) {
-		$userObjectDn = $this->searchForFirstDn($this->searchBase, $keyName, $value);
+		$userObjectDn = $this->searchfordn($this->searchBase, $keyName, $value);
 		$userObject = $this->getAttributes($userObjectDn);
 
 		//For simplicity, this only return first value of mutivalued attributes
@@ -187,13 +185,11 @@ class sspmod_selfregister_Storage_LdapMod extends SimpleSAML_Auth_LDAP implement
 	private function makeDn($userinfo){
 		$searchEnable = $this->lc->getBoolean('search.enable', TRUE);
 		if(!$searchEnable) {
-			$dnpattern = $this->lc->getString('dnpattern');
-			$user_id_param = $this->rc->getString('user.id.param', 'uid');
-			$rdn = $userinfo[$user_id_param];
+			$rdn = $userinfo[$this->userIdAttr];
 			if(is_array($rdn)) {
 				$rdn = $rdn[0];
 			}
-			$dn = str_replace('%username%', $rdn, $dnpattern);
+			$dn = str_replace('%username%', $rdn, $this->dnPattern);
 		}
 		else {
 			$hookfile = SimpleSAML_Module::getModuleDir('selfregister').'/hooks/hook_attributes.php';
@@ -255,8 +251,8 @@ class sspmod_selfregister_Storage_LdapMod extends SimpleSAML_Auth_LDAP implement
 	}
 
 
+	// FIXME: Deprecated, used LDAP:searchfordn instead
 	private function searchForFirstDn($base, $keyName, $value) {
-		// FIXME: escape_filter_value  -- fixed, (I Think)
 		$value = $this->ldap_escape($value, true);
 		$filter = "($keyName=$value*)";
 		$res = ldap_search($this->ldap, $base, $filter);

@@ -3,7 +3,6 @@
 $config = SimpleSAML_Configuration::getInstance();
 $uregconf = SimpleSAML_Configuration::getConfig('module_selfregister.php');
 $eppnRealm = $uregconf->getString('user.realm');
-$user_id_param = $uregconf->getString('user.id.param', 'uid');
 
 /* Get a reference to our authentication source. */
 $asId = $uregconf->getString('auth');
@@ -29,6 +28,8 @@ foreach ($formFields as $name => $field) {
 		$readOnlyFields[] = $name;
 	}
 }
+
+$store = sspmod_selfregister_Storage_UserCatalogue::instantiateStorage();
 
 $formGen = new sspmod_selfregister_XHTML_Form($formFields, 'reviewUser.php');
 $formGen->fieldsToShow($showFields);
@@ -61,14 +62,10 @@ if(array_key_exists('sender', $_POST)) {
 			$reviewAttr
 		);
 
-		$store = sspmod_selfregister_Storage_UserCatalogue::instantiateStorage();
+		// Always prevent changes on User identification param in DataSource and Session.
+		unset($userInfo[$store->userIdAttr]);
 
-		// Check that user identifier not change
-		if($attributes[$user_id_param][0] != $userInfo[$user_id_param]) {
-			throw new sspmod_selfregister_Error_UserException('id_violation');
-		}
-
-		$store->updateUser($attributes, $userInfo);
+		$store->updateUser($attributes[$store->userIdAttr][0], $userInfo);
 
 		// I must override the values with the userInfo values due in processInput i can change the values.
 		// But now atributes from the logged user is obsolete, So I can actualize it and get values from session
@@ -111,7 +108,7 @@ $formGen->setValues($values);
 $formGen->setSubmitter('submit_change');
 $formHtml = $formGen->genFormHtml();
 $html->data['formHtml'] = $formHtml;
-$html->data['uid'] = $attributes[$user_id_param][0];
+$html->data['uid'] = $attributes[$store->userIdAttr][0];
 $html->show();
 
 ?>

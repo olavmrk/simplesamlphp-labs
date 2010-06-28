@@ -20,20 +20,25 @@ $config = array (
 	'mail.replyto'  => 'Example <na@example.org>',
 	'mail.subject'  => 'Example - email verification',
 
-	// User id parameter
-	'user.id.param' => 'uid',
-
-	// plain, md5, sha1
-	'psw.encrypt' => 'sha1',
-
-	// Db backend
+	// User storage backend selector
 	'storage.backend' => 'LdapMod',
 
 	// LDAP backend configuration
 	// This is configured in authsources.php
+	// FIXME: The name of this arrays shoud be the same as storage.backend value
 	'ldap' => array(
 		'admin.dn' => 'cn=admin,dc=example,dc=org',
 		'admin.pw' => 'xyz',
+
+		// Storage User Id indicate which of the attributes
+		// that is the key in the storage
+		// This relates to the attributs mapping
+		'user.id.param' => 'uid',
+		//'user.id.param' => 'cn',
+
+		// Password encryption
+		// plain, md5, sha1
+		'psw.encrypt' => 'sha1',
 
 		// LDAP objectClass'es
 		'objectClass' => array(
@@ -55,8 +60,8 @@ $config = array (
 	// http://www.hq.nasa.gov/office/ospp/securityguide/V1comput/Password.htm
 
 
-	// Db field names to web field names mapping
-	// Registated attributes
+	// Mapping from the Storage backend field names to web frontend field names
+	// This also indicate which user attributes that will be saved
 	'attributes'  => array(
 		'uid' => 'uid',
 		'givenName' => 'givenName',
@@ -70,7 +75,7 @@ $config = array (
 		'userPassword' => 'userPassword',
 	),
 
-	// Web fields specification
+	// Configuration for the field in the web frontend
 	// This controlls the order of the fields
 	'formFields' => array(
 		// UID
@@ -134,7 +139,7 @@ $config = array (
 			'layout' => array(
 				'control_type' => 'password',
 			),
-		), 
+		),
 		'pw1' => array(
 			'validate' => FILTER_DEFAULT,
 			'layout' => array(
