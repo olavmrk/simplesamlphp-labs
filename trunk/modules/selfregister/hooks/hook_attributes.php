@@ -33,7 +33,7 @@
 	function get_cn_hook($userinfo) {
 		$givenName = $userinfo['givenName'];
 		$sn = $userinfo['sn'];
-		$cn = $givenName.' '.$sn. ' xxx1';
+		$cn = $givenName.' '.$sn;
 		return $cn;
 	}
 

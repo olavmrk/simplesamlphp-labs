@@ -4,9 +4,7 @@
 $config = SimpleSAML_Configuration::getInstance();
 $uregconf = SimpleSAML_Configuration::getConfig('module_selfregister.php');
 $eppnRealm = $uregconf->getString('user.realm');
-$storeConf = SimpleSAML_Configuration::loadFromArray(
-	sspmod_selfregister_Storage_UserCatalogue::getSelectedStorageConfig() );
-$user_id_param = $storeConf->getString('user.id.param', 'uid');
+$store = sspmod_selfregister_Storage_UserCatalogue::instantiateStorage();
 
 /* Get a reference to our authentication source. */
 $asId = $uregconf->getString('auth');
@@ -43,8 +41,7 @@ if(array_key_exists('sender', $_POST)) {
 	try{
 		// Delete user object
 
-		$store = sspmod_selfregister_Storage_UserCatalogue::instantiateStorage();
-		$store->delUser($attributes[$user_id_param][0]);
+		$store->delUser($attributes[$store->userIdAttr][0]);
 
 		// Now when a User delete himself sucesfully, System log out him.
 		// In the future when admin delete a user a msg will be showed
@@ -72,7 +69,7 @@ $formGen->setValues($values);
 $formGen->setSubmitter('submit_delete');
 $formHtml = $formGen->genFormHtml();
 $html->data['formHtml'] = $formHtml;
-$html->data['uid'] = $attributes[$user_id_param][0];
+$html->data['uid'] = $attributes[$store->userIdAttr][0];
 $html->show();
 
 ?>
