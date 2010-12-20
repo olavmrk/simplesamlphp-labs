@@ -40,7 +40,7 @@ if(array_key_exists('sender', $_REQUEST)) {
 		$html->data['error'] = htmlspecialchars($error);
 	}
 } elseif(array_key_exists('logout', $_GET)) {
-	$as->logout('index.php');
+	$as->logout(SimpleSAML_Module::getModuleURL('selfregister/index.php'));
 }
 
 $formGen->setSubmitter('submit_change');

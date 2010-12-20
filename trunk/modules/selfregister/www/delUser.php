@@ -46,7 +46,7 @@ if(array_key_exists('sender', $_POST)) {
 		// Now when a User delete himself sucesfully, System log out him.
 		// In the future when admin delete a user a msg will be showed
 		// $html->data['userMessage'] = 'message_userdel';
-		$as->logout('index.php?status=deleted');
+		$as->logout(SimpleSAML_Module::getModuleURL('selfregister/index.php?status=deleted'));
 
 	}catch(sspmod_selfregister_Error_UserException $e){
 		// Some user error detected
@@ -59,7 +59,7 @@ if(array_key_exists('sender', $_POST)) {
 		$html->data['error'] = htmlspecialchars($error);
 	}
 }elseif(array_key_exists('logout', $_GET)) {
-	$as->logout('index.php');
+	$as->logout(SimpleSAML_Module::getModuleURL('selfregister/index.php');
 } else {
 	// The GET access this endpoint
 	$values = sspmod_selfregister_Util::filterAsAttributes($attributes, $reviewAttr);
