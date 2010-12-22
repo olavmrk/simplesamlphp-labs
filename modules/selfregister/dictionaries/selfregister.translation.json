@@ -244,16 +244,15 @@
 	},
 	"submit_change": {
 		"no": "Lagre endring"
-	}
-
+	},
 	"ldap_add_invalid_syntax": {
-		"es": "Revise la configuración. Está intentando crear un usuario pero el objectClass es erroneo. También comprueba la estructura de datos del usuario.",
+		"es": "Revise la configuración. Está intentando crear un usuario pero el objectClass es erroneo. También comprueba la estructura de datos del usuario."
 	},
 	"user_not_exists": {
 		"es": "El usuario no existe"
 	},
 	"link_deluser": {
-		"es": "Eliminar cuenta",
+		"es": "Eliminar cuenta"
 	},
 	"submit_delete": {
 		"es": "Eliminar usuario"
@@ -262,18 +261,15 @@
 		"en": "Usuario eliminado"
 	},
 	"link_panel": {
-		'en'=> "Administrador de cuentas",
+		"en": "Administrador de cuentas"
 	},
-
 	"link_enter": {
-		'en'=> "Administrar mi cuenta",
+		"en": "Administrar mi cuenta"
 	},
-	
 	"id_violation": {
-		'en'=> "El identificador de usuario no puede ser modificado",
+		"en": "El identificador de usuario no puede ser modificado"
 	},
-
 	"return": {
-		'en'=> "Volver",
-	},
+		"en": "Volver"
+	}
 }
