@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>IdP Discovery Response Receiver</title>
+
+	<script type="text/javascript">
+
+// Making sure that console.log does not throw errors on Firefox + IE etc.
+if (typeof console == "undefined") var console = { log: function() {} };
+
+function receive() {
+	
+	var urlParams = {};
+	(function () {
+		var e,
+			a = /\+/g,  // Regex for replacing addition symbol with a space
+			r = /([^&;=]+)=?([^&;]*)/g,
+			d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+			q = window.location.search.substring(1);
+
+		while (e = r.exec(q))
+		   urlParams[d(e[1])] = d(e[2]);
+	})();
+	
+	if (urlParams.entityID) {
+		console.log('Response from discovery service: ' + urlParams.entityID);
+		window.parent.DiscoJuice.discoResponse(urlParams.entityID);
+	} 
+
+}
+
+console.log('DiscoveryResponse location: ');
+console.log(window.location);
+
+	</script>
+</head>
+
+<body onload="receive();">
+
+<h1>HELLO WORLD!</h1>
+
+</body>
+</html>
