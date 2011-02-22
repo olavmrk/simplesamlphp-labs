@@ -1,40 +1,191 @@
-#discojuice {
+
+/*
+ * Generic css for whole popup box
+ */
+div.discojuice {
 	font-family: Arial;
 	font-size: small;
+	z-index: 100;
+	margin: 0;
+	padding: 0;
+	width: 320px;
+	position: absolute;
+	top: 30px;
+	right: 10px;
+	z-index: 150;
+
+}
+
+div.discojuice p {
+	margin: 2px; padding: 0px;
 }
 
 
-#discojuice input#ulxSearchField {
+
+div.discojuice > div.top {
+
+	background: #fff;
+	border-bottom: 1px solid #bbb;
+	
+	-webkit-border-top-left-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-topright: 15px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+div.discojuice > div {
+
+	background: #eee;
+	border-bottom: 1px solid #bbb;
+	
+	padding: 8px 14px;
+	margin: 0;
+}
+
+div.discojuice > div.bottom {
+/*	background: url(../images/box-bottom.png) no-repeat 0% 100%;*/
+
+	background: #f8f8f8;
+
+	padding: 10px 17px;
+	margin: 0;
+		
+	-webkit-border-bottom-right-radius: 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-moz-border-radius-bottomright: 15px;
+	-moz-border-radius-bottomleft: 15px;
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	
+}
+
+div.discojuice .discojuice_maintitle {
+	font-size: 15px;
+	font-family: Tahoma, Helvetica;
+	font-weight: normal;
+	color: #666;
+}
+
+div.discojuice .discojuice_subtitle {
+	font-size: 12px;
+	font-family: Tahoma, Helvetica;
+	font-weight: normal;
+	color: #888;
+}
+
+div.discojuice .discojuice_close {
+	width: 62px;
+	height: 29px;
+	background: url(../images/close.png) no-repeat;
+	text-decoration: none;
+	float: right;
+}
+
+div.discojuice .discojuice_close:hover {
+	background: url(../images/close-hover.png) no-repeat;
+}
+
+
+div.discojuice a {
+	outline: none;
+	color: #0077a1;
+}
+
+div.discojuice a img {
+	border: none;
+	outline: none;
+}
+
+div.discojuice a:hover {
+	color: #34a5cd;
+}
+
+
+
+
+
+
+/*
+ * Section for the scroller
+ */
+div.discojuice #content {
+	overflow: auto;	
+	max-height: 350px;	
+}
+div.discojuice div.scroller {
+
+	padding:  1px;
+}
+div.discojuice div.scroller img {
+	margin: 0px;
+	float:  right;
+}
+
+
+div.discojuice div.scroller a span {
+	margin: 3px;
+	display: block;
+}
+div.discojuice div.scroller a span.substring {
+	font-size:  95%;
+	color: #777;
+}
+div.discojuice div.scroller hr {
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
+
+
+
+
+/*
+ * Section for the filters
+ */
+
+
+
+
+
+
+
+
+/*
+ * Section for the search box
+ */
+div.discojuice input.discojuice_search {
 	width: 100%;
 }
 
-#discojuice #s {
+
+
+
+
+
+
+
+
+
+/*
+div.discojuice #s {
 	font-family: Arial;
 	font-size: 12px;
 	margin: 0;
 	padding: 0;
 }
-#discojuice p {
-	margin: 2px; padding: 0px;
-}
+*/
 
 
-#discojuice a {
-	outline: none;
-	color: #0077a1;
-}
-
-#discojuice a img {
-	border: none;
-	outline: none;
-}
-
-#discojuice a:hover {
-	color: #34a5cd;
-}
 
 
-#discojuice #overlay {
+
+
+/*
+div.discojuice #overlay {
 	z-index: 100;
 	width: 100%;
 	height: 100%;
@@ -43,77 +194,16 @@
 	top: 0;
 	left: 0;
 }
+*/
 
-dl#discojuice {
-	margin: 0;
-	padding: 0;
-	width: 320px;
-	position: absolute;
-	top: 30px;
-	right: 10px;
-	z-index: 150;
-}
 
-dl#discojuice dt {
-	background: url(../images/box-top.png) no-repeat;
-	position: relative;
-	margin: 0;
-	height: 52px;
-}
 
-dl#discojuice dd {
-	background: url(../images/box-main.png) no-repeat 0% 100%;
-	position: relative;
-	padding: 10px 17px;
-	margin: 0;
-}
-
-dl#discojuice dd.bottom {
-	background: url(../images/box-bottom.png) no-repeat 0% 100%;
-	position: relative;
-	padding: 10px 17px;
-	margin: 0;
-}
-
-#discojuice #maintitle {
-	font-size: 15px;
-	font-family: Tahoma, Helvetica;
-	font-weight: normal;
-	position: absolute;
-	top: 12px;
-	left: 17px;
-}
-
-#discojuice #subtitle {
-	font-size: 12px;
-	font-family: Tahoma, Helvetica;
-	font-weight: normal;
-	position: absolute;
-	top: 30px;
-	left: 17px;
-	color: #666;
-}
-
-#discojuice #close {
-	width: 62px;
-	height: 29px;
-	background: url(../images/close.png) no-repeat;
-	display: block;
-	text-indent: -9999px;
-	top: 15px;
-	right: 5px;
-	position: absolute;
-}
-
-#discojuice #close:hover {
-	background: url(../images/close-hover.png) no-repeat;
-}
-
-#discojuice #loginsearch_flexselect_dropdown {
+/*
+div.discojuice #loginsearch_flexselect_dropdown {
 	display: none !important;
 }
 
-#discojuice #loginsearch_flexselect {
+div.discojuice #loginsearch_flexselect {
 	background: url(../images/search-active.png) no-repeat;
 	width: 251px;
 	height: 20px;
@@ -123,39 +213,13 @@ dl#discojuice dd.bottom {
 	border: none;
 }
 
-#discojuice #loginsearch_flexselect.empty {
+div.discojuice #loginsearch_flexselect.empty {
 	color: #aaa;
 	background: url(../images/search.png) no-repeat;
 }
+*/
 
 
-/* Scroller */
-#discojuice #content {
-	overflow: auto;	
-	max-height: 350px;	
-}
-#discojuice div#scroller {
-
-	padding:  1px;
-}
-#discojuice div#scroller img {
-	margin: 0px;
-	float:  right;
-}
-
-
-#discojuice div#scroller a span {
-	margin: 3px;
-	display: block;
-}
-#discojuice div#scroller a span.substring {
-	font-size:  95%;
-	color: #777;
-}
-#discojuice div#scroller hr {
-	margin: 0px;
-	padding: 0px;
-}
 
 
 
@@ -171,7 +235,7 @@ dl#discojuice dd.bottom {
  */
 
 /* Generals */
-#discojuice div#scroller a {
+div.discojuice div.scroller a {
 	margin: 4px 2px 0px 0px;
 	display:  block;
 
@@ -191,16 +255,16 @@ dl#discojuice dd.bottom {
 }
 
 /* Shaddow effect for normal entries... */
-#discojuice div#scroller a  {
+div.discojuice div.scroller a  {
 /*	box-shadow: inset 0 1px 3px #fff, inset 0 -15px #cbe6f2, 0 0 3px #8ec1da;*/
 } 
 
 
 /* Item that is hovered. */
-#discojuice div#scroller a:hover, #discojuice div#scroller a.hothit:hover {
+div.discojuice div.scroller a:hover, div.discojuice div.scroller a.hothit:hover {
 	background-color: #fafafa;
 }
-#discojuice div#scroller a:hover {
+div.discojuice div.scroller a:hover {
 	background-color: #fafafa;
 	border: 1px solid #999;
 
@@ -217,7 +281,7 @@ dl#discojuice dd.bottom {
 /* Highlight the entry that is listed on top reccomended.
  * usually because the user has selected that item before.
  */
-#discojuice div#scroller a.hothit {
+div.discojuice div.scroller a.hothit {
 /*	border: 3px solid #ccc;*/
 	border: 2px solid #8ec1da;
 	background-color: #daebf3;
@@ -236,11 +300,11 @@ dl#discojuice dd.bottom {
 
 
 
-#discojuice div#scroller.filtered a {
+div.discojuice div.scroller.filtered a {
 	display: none !important;
 }
 
-#discojuice div#scroller.filtered a.present {
+div.discojuice div.scroller.filtered a.present {
 	display: inline-block !important;
 }
 
@@ -263,25 +327,25 @@ dl#discojuice dd.bottom {
 
 
 
-#discojuice a#moreoptions, a#what {
+div.discojuice a#moreoptions, a.discojuice_what {
 	padding-left: 12px;
 	background: url(../images/arrow.png) no-repeat 0px 3px;
 }
 
-#discojuice #whatisthis.show a#what {
+div.discojuice .discojuice_whatisthis.show a.discojuice_what {
 	background: url(../images/arrow-r.png) no-repeat 0px 5px;
 }
 
-#discojuice p#moretext {
+div.discojuice p.moretext {
 	margin-top: 0;
 	color: #777;
 }
 
-#discojuice div#whatisthis {
+div.discojuice div.discojuice_whatisthis {
 	margin-bottom: 10px;
 }
 
-#discojuice #whattext {
+div.discojuice .discojuice_whattext {
 	display: none;
 	margin-top: 1px;
 	margin-left: 12px;
@@ -291,6 +355,32 @@ dl#discojuice dd.bottom {
 	color: #555;
 }
 
-#discojuice #whatisthis.show #whattext {
+div.discojuice .discojuice_whatisthis.show .discojuice_whattext {
 	display: block;
 }
+
+
+
+
+/*
+ * Overlay grey out background
+ */
+
+div#discojuice_overlay {
+    background-color: black;
+    filter:alpha(opacity=50); /* IE */
+    opacity: 0.5; /* Safari, Opera */
+    -moz-opacity:0.50; /* FireFox */
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+
+
+
+
