@@ -138,6 +138,14 @@ div.discojuice div.scroller hr {
 }
 
 
+div.discojuice div.scroller.filtered a {
+	display: none !important;
+}
+
+div.discojuice div.scroller.filtered a.present {
+	display: inline-block !important;
+}
+
 
 
 
@@ -161,63 +169,6 @@ div.discojuice input.discojuice_search {
 	width: 100%;
 }
 
-
-
-
-
-
-
-
-
-
-/*
-div.discojuice #s {
-	font-family: Arial;
-	font-size: 12px;
-	margin: 0;
-	padding: 0;
-}
-*/
-
-
-
-
-
-
-/*
-div.discojuice #overlay {
-	z-index: 100;
-	width: 100%;
-	height: 100%;
-	background: url(../images/overlay.png);
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-*/
-
-
-
-/*
-div.discojuice #loginsearch_flexselect_dropdown {
-	display: none !important;
-}
-
-div.discojuice #loginsearch_flexselect {
-	background: url(../images/search-active.png) no-repeat;
-	width: 251px;
-	height: 20px;
-	font-size: 12px;
-	color: #333;
-	padding: 5px 30px 5px 5px;
-	border: none;
-}
-
-div.discojuice #loginsearch_flexselect.empty {
-	color: #aaa;
-	background: url(../images/search.png) no-repeat;
-}
-*/
 
 
 
@@ -300,13 +251,7 @@ div.discojuice div.scroller a.hothit {
 
 
 
-div.discojuice div.scroller.filtered a {
-	display: none !important;
-}
 
-div.discojuice div.scroller.filtered a.present {
-	display: inline-block !important;
-}
 
 /*
  * ------ END OF ---- SECTION FOR THE IDP Buttons -----
