@@ -90,7 +90,8 @@ div.discojuice .discojuice_close:hover {
 
 div.discojuice a {
 	outline: none;
-	color: #0077a1;
+	color: #444;
+	text-decoration: none;
 }
 
 div.discojuice a img {
@@ -99,7 +100,8 @@ div.discojuice a img {
 }
 
 div.discojuice a:hover {
-	color: #34a5cd;
+	color: #666;
+	border-bottom: 1px solid #aaa;
 }
 
 
@@ -190,15 +192,28 @@ div.discojuice div.scroller a {
 	margin: 4px 2px 0px 0px;
 	display:  block;
 
-	border: 1px solid #8ec1da;
+	border: 1px solid #bbb;
 	border-radius: 4px;
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
 	
-	background-color: #ddeef6;
+
+	
+background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.3, rgb(220,220,220)),
+    color-stop(0.9, rgb(240,240,240))
+);
+background-image: -moz-linear-gradient(
+    center bottom,
+    rgb(220,220,220) 30%,
+    rgb(240,240,240) 90%
+);
 
 	/* Text */
-	color: #3985a8;
+	color: #333;
 	text-shadow: 0 1px #fff;
 	font-size:  135%;
 	font-family:  "Arial Narrow", "Arial", sans-serif;
@@ -214,10 +229,11 @@ div.discojuice div.scroller a  {
 /* Item that is hovered. */
 div.discojuice div.scroller a:hover, div.discojuice div.scroller a.hothit:hover {
 	background-color: #fafafa;
+	border: 1px solid #666! important;
 }
 div.discojuice div.scroller a:hover {
 	background-color: #fafafa;
-	border: 1px solid #999;
+	border: 1px solid #666;
 
 /*
 	-o-box-shadow: none;
@@ -234,16 +250,16 @@ div.discojuice div.scroller a:hover {
  */
 div.discojuice div.scroller a.hothit {
 /*	border: 3px solid #ccc;*/
-	border: 2px solid #8ec1da;
-	background-color: #daebf3;
+	border: 1px solid #aaa;
+/*	background-color: #daebf3;*/
 	color: #333;
 	margin-bottom: 14px;
 	
 	border-radius: 4px;
-	box-shadow: 0 0 5px  #d8e9f0;
-	-o-box-shadow: 0 0 5px  #d8e9f0;
-	-webkit-box-shadow: 0 0 5px  #d8e9f0;
-	-moz-box-shadow: 0 0 5px  #d8e9f0;
+	box-shadow: 0 0 5px  #ccc;
+	-o-box-shadow: 0 0 5px  #ccc;
+	-webkit-box-shadow: 0 0 5px  #ccc;
+	-moz-box-shadow: 0 0 5px  #ccc;
 	color: #333;
 	text-shadow: 0 1px #fff;
 }
