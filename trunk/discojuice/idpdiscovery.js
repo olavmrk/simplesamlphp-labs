@@ -15,7 +15,8 @@ var IdPDiscovery = function() {
 	];
 	var serviceNames = {
 		'http://dev.andreas.feide.no/simplesaml/module.php/saml/sp/metadata.php/default-sp': 'Andreas Developer SP',
-		'overthere': 'Foodle'
+		'https://beta.foodl.org/simplesaml/module.php/saml/sp/metadata.php/saml': 'Foodle Beta',
+		'https://foodl.org/simplesaml/module.php/saml/sp/metadata.php/saml': 'Foodle'
 	};
 	
 	var query = {};
