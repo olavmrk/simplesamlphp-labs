@@ -303,6 +303,7 @@ DiscoJuice.Control = {
 			//$("input#ulxSearchField").val('')
 			//DiscoJuice.listResults();
 			that.resetTerm();
+			that.ui.focusSearch();
 			that.prepareData();
 		});
 	},

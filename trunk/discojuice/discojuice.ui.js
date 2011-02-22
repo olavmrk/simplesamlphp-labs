@@ -29,6 +29,10 @@ DiscoJuice.UI = {
 	
 		this.popup.fadeIn("slow");
 		$("div#discojuice_overlay").show(); // fadeIn("fast");
+		this.focusSearch();
+	},
+	
+	"focusSearch": function() {
 		$("input.discojuice_search").focus();
 	},
 	"hide": function() {
