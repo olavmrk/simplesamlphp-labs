@@ -100,8 +100,10 @@ var IdPDiscovery = function() {
 				
 			$(document).ready(function() {
 				var overthere = that;
+				var name = overthere.getName();
+				if (!name) name = 'unknown service';
 				$("a.signin").DiscoJuice({
-					"title": 'Sign in to <strong>' + overthere.getName() + '</strong>',
+					"title": 'Sign in to <strong>' + name + '</strong>',
 					"subtitle": "Select your Provider",
 					"always": true,
 					"overlay": true,
