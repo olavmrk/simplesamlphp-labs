@@ -106,6 +106,7 @@ var IdPDiscovery = function() {
 				$("a.signin").DiscoJuice({
 					"title": 'Sign in to <strong>' + name + '</strong>',
 					"subtitle": "Select your Provider",
+					"discoPath": "discojuice/",
 					"always": true,
 					"overlay": true,
 					"cookie": true,
@@ -116,13 +117,12 @@ var IdPDiscovery = function() {
 					"location": false,
 					"disco": {
 						"spentityid": "https://foodl.org",
-						"url": "https://disco.uninett.no/discojuice/discojuiceDiscoveryResponse.html",
+						"url": "https://disco.uninett.no/discojuice/discojuiceDiscoveryResponse.html?",
 						"stores": [
-	// 						'https://foodle.feide.no/simplesaml/module.php/discopower/disco.php',
-	// 						'https://kalmar2.org/simplesaml/module.php/discopower/disco.php',
-							'https://rnd.feide.no/disco/'
+	 						'https://foodle.feide.no/simplesaml/module.php/discopower/disco.php',
+	 						'https://kalmar2.org/simplesaml/module.php/discopower/disco.php',
 						],
-						'writableStore': 'https://rnd.feide.no/disco/'
+//						'writableStore': 'https://rnd.feide.no/disco/'
 					},
 					"callback": function(e) {
 						overthere.returnTo(e); 

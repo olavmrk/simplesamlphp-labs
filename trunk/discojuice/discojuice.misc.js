@@ -15,25 +15,56 @@ if (typeof console == "undefined") var console = { log: function() {} };
 var DiscoJuice = {};
 
 
+/*
+ * Country codes available here http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+ */
 DiscoJuice.Constants = {
 	"Countries": {
-		'NO': 'Norway',
+
+		'CZ': 'Czech',
 		'DK': 'Denmark',
 		'FI': 'Finland',
-		'SE': 'Sweden',
-		'ES': 'Spain',
-		'IT': 'Italy',
-		'DE': 'Germany',
 		'FR': 'France',
-		'NL': 'Netherlands',
-		'HR': 'Croatia',
-		'CZ': 'Czech',
+		'DE': 'Germany',
 		'GR': 'Greece',
-		'PT': 'Portugal',
+		'HR': 'Croatia',
+		'IE': 'Ireland',
+		'IT': 'Italy',
+		'HU': 'Hungary',
 		'LU': 'Luxembourg',
-		'CH': 'Switzerland',
+		'NL': 'Netherlands',
+		'NO': 'Norway',
+		'PL': 'Poland',
+		'PT': 'Portugal',
 		'SI': 'Slovenia',
+		'ES': 'Spain',
+		'SE': 'Sweden',
+		'CH': 'Switzerland',
+		'TR': 'Turkey',
 		'US': 'USA'
+	},
+	"Flags": {
+		'CZ': 'cz.png',
+		'DK': 'dk.png',
+		'FI': 'fi.png',
+		'FR': 'fr.png',
+		'DE': 'de.png',
+		'GR': 'gr.png',
+		'HR': 'hr.png',
+		'IE': 'ie.png',
+		'IT': 'it.png',
+		'HU': 'hu.png',
+		'LU': 'lu.png',
+		'NL': 'nl.png',
+		'NO': 'no.png',
+		'PL': 'pl.png',
+		'PT': 'pt.png',
+		'SI': 'si.png',
+		'ES': 'es.png',
+		'SE': 'se.png',
+		'CH': 'ch.png',
+		'TR': 'tr.png',
+		'US': 'us.png',
 	}
 };
 

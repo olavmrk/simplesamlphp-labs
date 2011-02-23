@@ -79,13 +79,13 @@ DiscoJuice.Control = {
 	},
 	
 	
-	"prepareData": function() {
+	"prepareData": function(showall) {
+	
+		var showall = (showall ? true : false);
 	
 		this.parent.Utils.log('DiscoJuice.Control prepareData()');
 		
 		var hits, i, current, search;
-		
-// 		var i, hits, current, search;
  		var maxhits = 10;
 // 		
  		var term = this.getTerm();
@@ -112,6 +112,9 @@ DiscoJuice.Control = {
 		}
 		if (categories) {
 			maxhits = 25;
+		}
+		if (showall) {
+			maxhits = 200;
 		}
 // 		if (term) {
 // 			maxhits = 10;
@@ -156,13 +159,29 @@ DiscoJuice.Control = {
 					this.ui.addItem(current, current.descr);
 				} else if (current.country) {
 					var cname = (this.parent.Constants.Countries[current.country] ? this.parent.Constants.Countries[current.country] : current.country);
-					this.ui.addItem(current, cname);
+					if (cname === '_all_') cname = '';
+					var cflag = (this.parent.Constants.Flags[current.country] ? this.parent.Constants.Flags[current.country] : undefined);
+					this.ui.addItem(current, cname, cflag);
 				} else {
 					this.ui.addItem(current);
 				}
 
 			} else if (search === null) {
-				this.ui.addItem(current);
+//				this.ui.addItem(current);
+
+				var cname = (this.parent.Constants.Countries[current.country] ? this.parent.Constants.Countries[current.country] : current.country);
+				if (cname === '_all_') cname = '';
+				var cflag = (this.parent.Constants.Flags[current.country] ? this.parent.Constants.Flags[current.country] : undefined);
+
+
+				if (current.descr) {
+					this.ui.addItem(current, current.descr, cflag);
+				} else if (!categories.country && current.country) {
+					this.ui.addItem(current, cname, cflag);
+				} else {
+					this.ui.addItem(current);
+				}
+
 			} else {
 				this.ui.addItem(current, search);
 			}
@@ -308,8 +327,10 @@ DiscoJuice.Control = {
 		});
 	},
 	"setCountry": function(country) {
-		this.ui.popup.find('select.discojuice_filterCountrySelect').val(country);
-		this.prepareData();		
+		if (this.parent.Constants.Countries[country]) {
+			this.ui.popup.find('select.discojuice_filterCountrySelect').val(country);
+			this.prepareData();		
+		}
 	},
 	"getCountry": function() {
 		// If countryAPI is set, then lookup by IP.
@@ -348,7 +369,8 @@ DiscoJuice.Control = {
 			event.preventDefault();
 			that.resetCategories();
 			that.resetTerm();
-			that.prepareData();
+			that.prepareData(true);
+			that.ui.focusSearch();
 		});
 	},
 	
