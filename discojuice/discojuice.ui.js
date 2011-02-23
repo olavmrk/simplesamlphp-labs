@@ -43,28 +43,37 @@ DiscoJuice.UI = {
 	"clearItems": function() {
 		this.resulthtml = '';
 	},
-	"addItem": function(current, substring) {
+	"addItem": function(current, substring, flag) {
 		var textLink = '';
 		var classes = '';
 		if (current.weight < -50) classes += 'hothit';
-	
+
+		var iconpath = this.parent.Utils.options.get('discoPath', '') + 'logos/';
+		var flagpath = this.parent.Utils.options.get('discoPath', '') + 'flags/';
+		
+		var flagtext = '';
+		
+		if (flag) {
+			flagtext = '<img src="' + flagpath + flag + '" alt="' + escape(substring) + '" /> ';
+		}
+
 		if (current.icon) {
 			if (!substring) {
 				textLink += '<a href="" class="' + classes + '" rel="' + escape(current.entityid) + '" title="' + current.title + '">' + 
-					'<img src="' + current.icon + '" />' +
+					'<img class="logo" src="' + iconpath + current.icon + '" />' +
 					'<span class="title">' + current.title + '</span><hr style="clear: both; height: 0px; visibility:hidden" /></a>';
 			} else {
 				textLink += '<a href="" class="' + classes + '" rel="' + escape(current.entityid) + '" title="' + current.title + '">' + 
-					'<img src="' + current.icon + '" />' +
+					'<img class="logo" src="' + iconpath +  current.icon + '" />' +
 					'<span class="title">' + current.title + '</span>' + 
-					'<span class="substring">' + substring + '</span>' +
+					'<span class="substring">' + flagtext + substring + '</span>' +
 					'<hr style="clear: both; height: 0px; visibility:hidden" /></a>';
 						}
 		} else {
 			if (!substring) {
 				textLink += '<a href="" class="' + classes + '" rel="' + escape(current.entityid) + '"><span class="title">' + current.title + '</span></a>';		
 			} else {
-				textLink += '<a href="" class="' + classes + '" rel="' + escape(current.entityid) + '"><span class="title">' + current.title + '</span><span class="substring">' + substring + '</span></a>';					
+				textLink += '<a href="" class="' + classes + '" rel="' + escape(current.entityid) + '"><span class="title">' + current.title + '</span><span class="substring">' + flagtext + substring + '</span></a>';					
 			}
 	
 		}
@@ -111,6 +120,7 @@ DiscoJuice.UI = {
 				'<p id="filterCountry"></p>' +
 				'<p id="filterType"></p>' +
 				'<p class="discojuice_showall" ><a class="discojuice_showall" href="">Show all providers</a></p>' +
+				'<p style="margin 0px; text-align: right; color: #ccc; font-size: x-small">DiscoJuice &copy; 2011, UNINETT</p>' +
 			'</div>' +
 	
 // 			'<dd id="locatemediv">' +
@@ -224,9 +234,7 @@ DiscoJuice.UI = {
 // 	
 // 		// List the initial results...
 // 		// DiscoJuice.listResults();
-// 	
-// 	
-// 	
+
 	
 	},
 	

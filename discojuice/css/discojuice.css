@@ -114,13 +114,12 @@ div.discojuice a:hover {
  */
 div.discojuice #content {
 	overflow: auto;	
-	max-height: 350px;	
+	max-height: 450px;	
 }
 div.discojuice div.scroller {
-
-	padding:  1px;
+	padding:  1px 1px 10px 1px;
 }
-div.discojuice div.scroller img {
+div.discojuice div.scroller img.logo {
 	margin: 0px;
 	float:  right;
 }
