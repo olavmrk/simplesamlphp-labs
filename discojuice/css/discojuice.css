@@ -99,7 +99,7 @@ div.discojuice a img {
 	outline: none;
 }
 
-div.discojuice a:hover {
+div.discojuice a.textlink:hover {
 	color: #666;
 	border-bottom: 1px solid #aaa;
 }
