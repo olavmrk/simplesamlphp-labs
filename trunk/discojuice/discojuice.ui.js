@@ -111,15 +111,16 @@ DiscoJuice.UI = {
 			'<div id="search" class="" >' +
 				'<p><input type="search" class="discojuice_search" results=5 autosave="discojuice" name="searchfield" placeholder="or search for a provider, in example Univerity of Oslo" value="" /></p>' +
 				'<div class="discojuice_whatisthis" style="margin-top: 15px; font-size: 11px;">' +
-					'<a href="#" class="discojuice_what">Help me, I cannot find my provider</a>' +
-					'<p class="discojuice_whattext">If your institusion is not connected to Foodle, you may either select to login one of the commercial providers such as Facebook or Google, or you may create a new account using any of the Guest providers, such as Feide OpenIdP.</p>' +
+					'<a  href="#" class="textlink discojuice_what">Help me, I cannot find my provider</a>' +
+//					'<p class="discojuice_whattext">If your institusion is not connected to Foodle, you may either select to login one of the commercial providers such as Facebook or Google, or you may create a new account using any of the Guest providers, such as Feide OpenIdP.</p>' +
+					'<p class="discojuice_whattext">If your institusion is not connected to Foodle, you may create a new account using any of the Guest providers, such as <strong>OpenIdP (Guest users)</strong>.</p>' +
 				'</div>' +
 			'</div>' +
 			
 			'<div class="filters bottom">' +
 				'<p id="filterCountry"></p>' +
 				'<p id="filterType"></p>' +
-				'<p class="discojuice_showall" ><a class="discojuice_showall" href="">Show all providers</a></p>' +
+				'<p class="discojuice_showall" ><a class="discojuice_showall textlink" href="">Show all providers</a></p>' +
 				'<p style="margin 0px; text-align: right; color: #ccc; font-size: x-small">DiscoJuice &copy; 2011, UNINETT</p>' +
 			'</div>' +
 	
