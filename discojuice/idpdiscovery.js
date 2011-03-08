@@ -16,7 +16,10 @@ var IdPDiscovery = function() {
 	var serviceNames = {
 		'http://dev.andreas.feide.no/simplesaml/module.php/saml/sp/metadata.php/default-sp': 'Andreas Developer SP',
 		'https://beta.foodl.org/simplesaml/module.php/saml/sp/metadata.php/saml': 'Foodle Beta',
-		'https://foodl.org/simplesaml/module.php/saml/sp/metadata.php/saml': 'Foodle'
+		'https://foodl.org/simplesaml/module.php/saml/sp/metadata.php/saml': 'Foodle',
+		'https://ow.feide.no/simplesaml/module.php/saml/sp/metadata.php/default-sp': 'Feide OpenWiki',
+		'https://openwiki.feide.no/simplesaml/module.php/saml/sp/metadata.php/default-sp': 'Feide OpenWiki Administration',
+		'https://rnd.feide.no/simplesaml/module.php/saml/sp/metadata.php/saml': 'Feide Rnd'
 	};
 	
 	var query = {};
