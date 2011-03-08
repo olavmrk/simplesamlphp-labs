@@ -41,7 +41,8 @@ DiscoJuice.Constants = {
 		'SE': 'Sweden',
 		'CH': 'Switzerland',
 		'TR': 'Turkey',
-		'US': 'USA'
+		'US': 'USA',
+		'XX': 'Experimental'
 	},
 	"Flags": {
 		'CZ': 'cz.png',
