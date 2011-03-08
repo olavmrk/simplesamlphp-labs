@@ -210,15 +210,24 @@ DiscoJuice.Control = {
 			this.parent.Utils.createCookie(entityid);		
 		}
 
+		var entity = null;
+		for(i = 0; i < this.data.length; i++) {
+			if (this.data[i].entityid == entityid) {
+				entity = this.data[i];
+			}
+		}
+
+		console.log(entity);
+
 		callback = this.parent.Utils.options.get('callback');	
 		if (callback) {
 			if (mustwait) {
 				$.doTimeout(1000, function(){
-					callback(entityid);
+					callback(entity);
 				});
 				
 			} else {
-				callback(entityid);
+				callback(entity);
 			}
 			return;
 		}
