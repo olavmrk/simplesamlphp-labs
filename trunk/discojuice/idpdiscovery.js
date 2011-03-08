@@ -19,7 +19,8 @@ var IdPDiscovery = function() {
 		'https://foodl.org/simplesaml/module.php/saml/sp/metadata.php/saml': 'Foodle',
 		'https://ow.feide.no/simplesaml/module.php/saml/sp/metadata.php/default-sp': 'Feide OpenWiki',
 		'https://openwiki.feide.no/simplesaml/module.php/saml/sp/metadata.php/default-sp': 'Feide OpenWiki Administration',
-		'https://rnd.feide.no/simplesaml/module.php/saml/sp/metadata.php/saml': 'Feide Rnd'
+		'https://rnd.feide.no/simplesaml/module.php/saml/sp/metadata.php/saml': 'Feide Rnd',
+		'http://ulx.foodl.org/simplesaml/module.php/saml/sp/metadata.php/saml': 'Foodle ULX Demo'
 	};
 	
 	var query = {};
@@ -67,7 +68,7 @@ var IdPDiscovery = function() {
 			}
 			
 			if (e.auth) {
-				returnTo + '&auth=' + e.auth;
+				returnTo += '&auth=' + e.auth;
 			}
 			
 			if (!e.entityid) {
