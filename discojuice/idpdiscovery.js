@@ -46,7 +46,7 @@ var IdPDiscovery = function() {
 		"getName": function() {
 			return this.nameOf(this.getSP());
 		},
-		"returnTo": function(entityid) {
+		"returnTo": function(e) {
 			
 			var returnTo = query['return'] || null;
 			var returnIDParam = query.returnIDParam || 'entityID';
@@ -65,11 +65,18 @@ var IdPDiscovery = function() {
 					return;
 				}
 			}
-			if (!entityid) {
+			
+			if (e.auth) {
+				returnTo + '&auth=' + e.auth;
+			}
+			
+			if (!e.entityid) {
 				window.location = returnTo;
 			} else {
-				window.location = returnTo + '&' + returnIDParam + '=' + escape(entityid);
+				window.location = returnTo + '&' + returnIDParam + '=' + e.entityid;
 			}
+			
+			
 
 		},
 		
