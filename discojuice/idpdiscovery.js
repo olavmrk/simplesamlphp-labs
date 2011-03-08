@@ -131,6 +131,7 @@ var IdPDiscovery = function() {
 						"stores": [
 	 						'https://foodle.feide.no/simplesaml/module.php/discopower/disco.php',
 	 						'https://kalmar2.org/simplesaml/module.php/discopower/disco.php',
+	 						'https://wayf-test.surfnet.nl/federate/saml20'
 						],
 //						'writableStore': 'https://rnd.feide.no/disco/'
 					},
