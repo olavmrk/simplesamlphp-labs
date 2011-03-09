@@ -74,7 +74,7 @@ var IdPDiscovery = function() {
 			if (!e.entityid) {
 				window.location = returnTo;
 			} else {
-				window.location = returnTo + '&' + returnIDParam + '=' + e.entityid;
+				window.location = returnTo + '&' + returnIDParam + '=' + escape(e.entityid);
 			}
 			
 			
