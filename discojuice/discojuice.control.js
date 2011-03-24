@@ -19,6 +19,10 @@ DiscoJuice.Control = {
 	// Set filter values to filter the result.
 	"filters": {},
 	
+	"location": null,
+	"showdistance": false,
+
+	
 	/*
 	 * Fetching JSON Metadata using AJAX.
 	 * Callback postLoad is called when data is returned.
@@ -78,6 +82,69 @@ DiscoJuice.Control = {
 		this.prepareData();
 	},
 	
+	"calculateDistance": function() {
+		for(i = 0; i < this.data.length; i++) {
+			if (this.data[i].geo) {
+				this.data[i].distance = this.parent.Utils.calculateDistance(
+					this.data[i].geo.lat, this.data[i].geo.lon, this.location[0], this.location[1]
+				);
+			}
+		}
+		for(i = 0; i < this.data.length; i++) {
+			if (this.data[i].distance) {
+				console.log('Distance for [' + this.data[i].title + '] ' + this.data[i].distance);
+			} else {
+				console.log('Distance for [' + this.data[i].title + '] NA');
+			}
+		}
+		this.showdistance = true;
+		this.prepareData();
+	},
+	
+	"locateMe": function() {
+		var that = this;
+		console.log('Locate me');
+		
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition( 
+	
+				function (position) {  
+	
+					// Did we get the position correctly?
+					// alert (position.coords.latitude);
+	
+					// To see everything available in the position.coords array:
+					// for (key in position.coords) {alert(key)}
+	
+					console.log('You are here: lat ' + position.coords.latitude + ' lon ' + position.coords.longitude);
+					that.location = [position.coords.latitude, position.coords.longitude];
+					that.calculateDistance();
+					
+				}, 
+				// next function is the error callback
+				function (error) {
+					switch(error.code) {
+						case error.TIMEOUT:
+							locatemeInfo ('Timeout');
+							break;
+						case error.POSITION_UNAVAILABLE:
+							locatemeInfo ('Position unavailable');
+							break;
+						case error.PERMISSION_DENIED:
+							locatemeInfo ('Permission denied');
+							break;
+						case error.UNKNOWN_ERROR:
+							locatemeInfo ('Unknown error');
+							break;
+					}
+				}
+			);
+		} else {
+			console.log('Did not find navigator.geolocation');
+		}
+		
+	},
+	
 	
 	"prepareData": function(showall) {
 	
@@ -99,9 +166,19 @@ DiscoJuice.Control = {
 		 * Sort data by weight...
 		 */
 		this.data.sort(function(a, b) {
+		
+			// Weight
 			var xa, xb;		
 			xa = (a.weight ? a.weight : 0);
 			xb = (b.weight ? b.weight : 0);
+			
+			// Distance
+			var da, db;
+			da = (a.distance ? a.distance : 0);
+			db = (b.distance ? b.distance : 0);
+			
+			if (da && db) return (da - db);
+			
 			return (xa-xb);
 		});
 		
@@ -154,6 +231,7 @@ DiscoJuice.Control = {
 			
 	// 		DiscoJuice.log('Accept: ' + current.title);
 	
+			// If this search matched the name of the entry.
 			if (search === true) {
 				if (current.descr) {
 					this.ui.addItem(current, current.descr);
@@ -166,6 +244,7 @@ DiscoJuice.Control = {
 					this.ui.addItem(current);
 				}
 
+			// If there was no search
 			} else if (search === null) {
 //				this.ui.addItem(current);
 
@@ -173,7 +252,11 @@ DiscoJuice.Control = {
 				if (cname === '_all_') cname = '';
 				var cflag = (this.parent.Constants.Flags[current.country] ? this.parent.Constants.Flags[current.country] : undefined);
 
-
+				if (this.showdistance && current.distance) {
+					cname += ', ' + Math.round(current.distance) + ' km';
+				}
+				
+				
 				if (current.descr) {
 					this.ui.addItem(current, current.descr, cflag);
 				} else if (!categories.country && current.country) {
@@ -182,6 +265,7 @@ DiscoJuice.Control = {
 					this.ui.addItem(current);
 				}
 
+			// If there search matched a keyword.
 			} else {
 				this.ui.addItem(current, search);
 			}
