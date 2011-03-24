@@ -21,6 +21,7 @@ DiscoJuice.UI = {
 	// Reference to the 
 	"popup": null,
 	
+	
 	// Entities / items
 	"resulthtml": 'Loading data…',
 
@@ -103,6 +104,7 @@ DiscoJuice.UI = {
 				'<p class="discojuice_maintitle">' + this.parent.Utils.options.get('title', 'Title')  +  '</p>' +
 				'<p class="discojuice_subtitle">' + this.parent.Utils.options.get('subtitle', 'Subtitle') + '</p>' +
 			'</div>' +
+			
 			'<div id="content" style="">' +
 				'<p class="moretext"></p>' +
 				'<div class="scroller"></div>' +
@@ -117,6 +119,16 @@ DiscoJuice.UI = {
 				'</div>' +
 			'</div>' +
 			
+			'<div class="filters" id="locatemediv">' +
+				'<img style="float: left; margin-right: 5px" src="discojuice/images/target.png" alt="locate me..." />' +
+				'<p style="margin-top: 10px"><a id="locateme" href="">' +
+					'Locate me</a> to show providers nearby' +
+				'</p>' +
+				'<p style="color: #999" id="locatemeinfo"></p>' +
+				'<div style="clear: both" >' +
+				'</div>' +
+			'</div>' +
+			
 			'<div class="filters bottom">' +
 				'<p id="filterCountry"></p>' +
 				'<p id="filterType"></p>' +
@@ -124,15 +136,7 @@ DiscoJuice.UI = {
 				'<p style="margin 0px; text-align: right; color: #ccc; font-size: x-small">DiscoJuice &copy; 2011, UNINETT</p>' +
 			'</div>' +
 	
-// 			'<dd id="locatemediv">' +
-// 				'<img style="float: left; margin-right: 5px" src="ulx/images/target.png" alt="locate me..." />' +
-// 				'<p style="margin-top: 10px"><a id="locateme" href="">' +
-// 					'Locate me</a> to show providers nearby' +
-// 				'</p>' +
-// 				'<p style="color: #999" id="locatemeinfo"></p>' +
-// 				'<div style="clear: both" >' +
-// 				'</div>' +
-// 			'</dd>' +
+
 		'</div>';
 		var that = this;
 		
@@ -207,14 +211,15 @@ DiscoJuice.UI = {
 
 // 		
 // 			
-// 		if (DiscoJuice.options.get('location', false)) {
-// 			$("#locateme").click(function(event) {
-// 				event.preventDefault();
-// 				DiscoJuice.locateMe();
-// 			});
-// 		} else {
-// 			$("dd#locatemediv").hide();
-// 		}	
+		if (this.parent.Utils.options.get('location', false)) {
+			var that = this;
+			$("#locateme").click(function(event) {
+				event.preventDefault();
+				that.control.locateMe();
+			});
+		} else {
+			$("dd#locatemediv").hide();
+		}	
 // 		
 // 		/*
 // 			Initialise the search box.
