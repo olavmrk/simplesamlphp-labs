@@ -59,7 +59,7 @@ if(array_key_exists('sender', $_POST)) {
 		$html->data['error'] = htmlspecialchars($error);
 	}
 }elseif(array_key_exists('logout', $_GET)) {
-	$as->logout(SimpleSAML_Module::getModuleURL('selfregister/index.php');
+	$as->logout(SimpleSAML_Module::getModuleURL('selfregister/index.php'));
 } else {
 	// The GET access this endpoint
 	$values = sspmod_selfregister_Util::filterAsAttributes($attributes, $reviewAttr);
